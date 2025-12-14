@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36414.22 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HolookorBackend", "HolookorBackend.csproj", "{F17B9627-6150-4BB0-8A09-3106D9DFA821}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F17B9627-6150-4BB0-8A09-3106D9DFA821}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F17B9627-6150-4BB0-8A09-3106D9DFA821}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F17B9627-6150-4BB0-8A09-3106D9DFA821}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F17B9627-6150-4BB0-8A09-3106D9DFA821}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3CC401CE-F473-4C6A-A72C-3207F4853D05}
+	EndGlobalSection
+EndGlobal
