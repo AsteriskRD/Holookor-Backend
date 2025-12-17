@@ -42,6 +42,10 @@ namespace HolookorBackend.Core.Application.Services
             );
 
             student.AssignProfile(profile.Id);
+            if (profile.Role == "Parent") 
+            {
+                student.AssignParent(profile.Id); 
+            }
 
             await _studentRepo.CreateAsync(student);
             await _studentRepo.SaveAsync();

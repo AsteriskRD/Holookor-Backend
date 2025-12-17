@@ -11,6 +11,7 @@ namespace HolookorBackend.Core.Application.Interfaces.Services
         Task<BaseResponse<LoginResponseModel>> Login(LoginRequestModel model);
 
         Task<BaseResponse<UserDto>> GetById(string id);
+        Task<BaseResponse<ProfileDto>> GetByProfile(string userProfileId);
 
         Task<BaseResponse<ICollection<UserDto>>> GetAll(Paging paging);
 

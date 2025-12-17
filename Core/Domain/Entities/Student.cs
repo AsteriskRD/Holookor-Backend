@@ -17,6 +17,8 @@ namespace HolookorBackend.Core.Domain.Entities
         public string UserProfileId { get; private set; } = default!;
         public virtual UserProfile Profile { get; private set; } = default!;
         public ICollection<string> SubjectOfInterest { get; private set; } = new List<string>();
+        public string? ParentId { get; private set; }
+        public virtual Parent? Parent { get; private set; }
 
 
         private Student() { }
@@ -105,6 +107,12 @@ namespace HolookorBackend.Core.Domain.Entities
                 );
             }
         }
+
+        public void AssignParent(string parentId)
+        {
+            ParentId = parentId;
+        }
+
 
     }
 }

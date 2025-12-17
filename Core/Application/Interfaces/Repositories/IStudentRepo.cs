@@ -10,5 +10,7 @@ namespace HolookorBackend.Core.Application.Interfaces.Repositories
         Task<Student> Get(string id);
         Task<Student> GetAsync(Expression<Func<Student, bool>> predicate);
         Task<ICollection<Student>> GetAll(Paging paging);
+        Task<ICollection<Student>> GetAllAsync(
+        Expression<Func<Student, bool>> predicate);
     }
 }

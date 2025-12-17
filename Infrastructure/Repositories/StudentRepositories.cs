@@ -33,6 +33,14 @@ namespace HolookorBackend.Infrastructure.Repositories
                 .ToListAsync();
         }
 
+        public async Task<ICollection<Student>> GetAllAsync(
+    Expression<Func<Student, bool>> predicate
+)
+        {
+            return await _context.Students
+                .Where(predicate)
+                .ToListAsync();
+        }
 
         public async Task<Student?> GetAsync(Expression<Func<Student, bool>> predicate)
         {

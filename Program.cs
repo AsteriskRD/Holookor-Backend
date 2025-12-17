@@ -25,8 +25,11 @@ builder.Services.AddDbContext<HolookorSystem>(options =>
     )
 );
 
-builder.Services.AddScoped<IJWTAuthenticationManager, JWTAuthenticationManager>();
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+builder.WebHost.UseUrls($"http://*:{port}");
+builder.Services.AddHealthChecks();
 
+builder.Services.AddScoped<IJWTAuthenticationManager, JWTAuthenticationManager>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<IParentService, ParentService>();
@@ -101,17 +104,25 @@ builder.Services.AddCors(options =>
               .AllowAnyHeader());
 });
 
+
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+if (!app.Environment.IsProduction())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Holookor API v1");
-        c.RoutePrefix = string.Empty;
-    });
+    app.UseHttpsRedirection();
 }
+
+
+//if (app.Environment.IsDevelopment())
+//{
+//    app.UseSwagger();
+//    app.UseSwaggerUI(c =>
+//    {
+//        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Holookor API v1");
+//        c.RoutePrefix = string.Empty;
+//    });
+//}
+app.UseHealthChecks("/health");
 
 app.UseCors("AllowAll");
 

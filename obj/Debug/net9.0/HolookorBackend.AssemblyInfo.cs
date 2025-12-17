@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("88cdcd6d-3b49-4c00-b0b8-545fde218981")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("HolookorBackend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c47c543895037663eef529b8db06eb17979871bb")]
 [assembly: System.Reflection.AssemblyProductAttribute("HolookorBackend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HolookorBackend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

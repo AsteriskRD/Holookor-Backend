@@ -1,0 +1,7 @@
+[build]
+builder = "dockerfile"
+dockerfilePath = "./HolookorBackend/Dockerfile"
+
+[deploy]
+restartPolicyType = "always"
+healthcheckPath = "/health"

@@ -34,6 +34,14 @@ namespace HolookorBackend.Presentation.Controllers
         }
 
         [Authorize]
+        [HttpGet("Profile")]
+        public async Task<IActionResult> Profile()
+        {
+            var userProfileId = User.FindFirstValue("userProfileId")!;
+            return Ok(await _service.GetById(userProfileId));
+        }
+
+        [Authorize]
         [HttpPut("password")]
         public async Task<IActionResult> UpdatePassword(UpdateUserRequestModel model)
         {
