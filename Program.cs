@@ -117,6 +117,7 @@ var app = builder.Build();
         c.RoutePrefix = string.Empty;
     });
 
+app.MapGet("/", () => Results.Ok("API is running"));
 app.UseHealthChecks("/health");
 
 app.UseCors("AllowAll");
