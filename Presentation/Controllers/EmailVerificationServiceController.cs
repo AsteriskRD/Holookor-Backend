@@ -1,5 +1,5 @@
 ﻿using HolookorBackend.Core.Application.Interfaces.Repositories;
-using HolookorBackend.Core.Application.Services;
+using HolookorBackend.Core.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -11,11 +11,11 @@ namespace HolookorBackend.Presentation.Controllers
     [Route("api/email-verification")]
     public class EmailVerificationController : ControllerBase
     {
-        private readonly EmailVerificationService _service;
         private readonly IUserProfileRepo _profileRepo;
+        private readonly IEmailVerificationService _service;
 
         public EmailVerificationController(
-            EmailVerificationService service,
+            IEmailVerificationService service,
             IUserProfileRepo profileRepo)
         {
             _service = service;

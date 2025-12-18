@@ -35,7 +35,7 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<IParentService, ParentService>();
 builder.Services.AddScoped<ITutorService, TutorService>();
-
+builder.Services.AddScoped<IEmailVerificationService, EmailVerificationService>();
 builder.Services.AddScoped<IUserRepo, UserRepositories>();
 builder.Services.AddScoped<IStudentRepo, StudentRepositories>();
 builder.Services.AddScoped<IParentRepo, ParentRepositories>();

@@ -1,10 +1,11 @@
 ﻿using HolookorBackend.Core.Application.Interfaces.Repositories;
+using HolookorBackend.Core.Application.Interfaces.Services;
 using HolookorBackend.Core.Domain.Entities;
 using HolookorBackend.Infrastructure.Email;
 
 namespace HolookorBackend.Core.Application.Services
 {
-    public class EmailVerificationService
+    public class EmailVerificationService : IEmailVerificationService
     {
         private readonly IEmailVerificationRepo _repo;
         private readonly IUserProfileRepo _profileRepo;
