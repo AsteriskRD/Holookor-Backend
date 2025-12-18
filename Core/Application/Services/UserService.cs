@@ -95,7 +95,10 @@ namespace HolookorBackend.Core.Application.Services
 
             var token = _jwtAuthManager.GenerateToken(new UserDto(user.Id)
             {
-                Email = user.Email
+                Email = user.Email,
+               FirstName = user.UserProfile.FirstName,
+               UserProfileId = user.UserProfileId
+
             });
 
             return new BaseResponse<LoginResponseModel>

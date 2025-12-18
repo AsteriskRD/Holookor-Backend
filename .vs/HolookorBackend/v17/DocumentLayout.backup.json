@@ -3,16 +3,48 @@
   "WorkspaceRootPath": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|c:\\users\\lawson\\desktop\\holookorbackend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|c:\\users\\lawson\\desktop\\holookorbackend\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|solutionrelative:dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|c:\\users\\lawson\\desktop\\holookorbackend\\railway.toml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|solutionrelative:railway.toml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|c:\\users\\lawson\\desktop\\holookorbackend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|c:\\users\\lawson\\desktop\\holookorbackend\\presentation\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|solutionrelative:presentation\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|c:\\users\\lawson\\desktop\\holookorbackend\\presentation\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|solutionrelative:presentation\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|c:\\users\\lawson\\desktop\\holookorbackend\\presentation\\controllers\\parentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|solutionrelative:presentation\\controllers\\parentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|c:\\users\\lawson\\desktop\\holookorbackend\\core\\application\\services\\studentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|solutionrelative:core\\application\\services\\studentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|c:\\users\\lawson\\desktop\\holookorbackend\\core\\domain\\entities\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|solutionrelative:core\\domain\\entities\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|c:\\users\\lawson\\desktop\\holookorbackend\\core\\application\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|solutionrelative:core\\application\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|c:\\users\\lawson\\desktop\\holookorbackend\\core\\application\\authentication\\jwtauthenticationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|solutionrelative:core\\application\\authentication\\jwtauthenticationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|c:\\users\\lawson\\desktop\\holookorbackend\\core\\domain\\entities\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|solutionrelative:core\\domain\\entities\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|c:\\users\\lawson\\desktop\\holookorbackend\\core\\domain\\entities\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -55,18 +87,6 @@
       "RelativeMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|solutionrelative:core\\application\\dtos\\studentdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|c:\\users\\lawson\\desktop\\holookorbackend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|c:\\users\\lawson\\desktop\\holookorbackend\\dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|solutionrelative:dockerfile||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|c:\\users\\lawson\\desktop\\holookorbackend\\railway.toml||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|solutionrelative:railway.toml||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|c:\\users\\lawson\\desktop\\holookorbackend\\core\\application\\interfaces\\services\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|solutionrelative:core\\application\\interfaces\\services\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -99,10 +119,6 @@
       "RelativeMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|solutionrelative:core\\application\\dtos\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|c:\\users\\lawson\\desktop\\holookorbackend\\presentation\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|solutionrelative:presentation\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|c:\\users\\lawson\\desktop\\holookorbackend\\core\\domain\\enums\\defaultroles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|solutionrelative:core\\domain\\enums\\defaultroles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -111,24 +127,12 @@
       "RelativeMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|solutionrelative:infrastructure\\context\\holookorsystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|c:\\users\\lawson\\desktop\\holookorbackend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|c:\\users\\lawson\\desktop\\holookorbackend\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|solutionrelative:appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|c:\\users\\lawson\\desktop\\holookorbackend\\presentation\\controllers\\emailverificationservicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|solutionrelative:presentation\\controllers\\emailverificationservicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|c:\\users\\lawson\\desktop\\holookorbackend\\presentation\\controllers\\parentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|solutionrelative:presentation\\controllers\\parentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|c:\\users\\lawson\\desktop\\holookorbackend\\presentation\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|solutionrelative:presentation\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|c:\\users\\lawson\\desktop\\holookorbackend\\core\\application\\services\\emailverificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -141,10 +145,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|c:\\users\\lawson\\desktop\\holookorbackend\\core\\application\\services\\tutorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|solutionrelative:core\\application\\services\\tutorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|c:\\users\\lawson\\desktop\\holookorbackend\\core\\application\\authentication\\jwtauthenticationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|solutionrelative:core\\application\\authentication\\jwtauthenticationmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F17B9627-6150-4BB0-8A09-3106D9DFA821}|HolookorBackend.csproj|c:\\users\\lawson\\desktop\\holookorbackend\\core\\application\\interfaces\\services\\itutorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -278,102 +278,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 8,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "TutorMapper.cs",
-              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\Mappers\\TutorMapper.cs",
-              "RelativeDocumentMoniker": "Core\\Application\\Mappers\\TutorMapper.cs",
-              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\Mappers\\TutorMapper.cs",
-              "RelativeToolTip": "Core\\Application\\Mappers\\TutorMapper.cs",
-              "ViewState": "AgIAAAcAAABgZmZmZmY6wBUAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-17T14:55:52.242Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "ParentMapper.cs",
-              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\Mappers\\ParentMapper.cs",
-              "RelativeDocumentMoniker": "Core\\Application\\Mappers\\ParentMapper.cs",
-              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\Mappers\\ParentMapper.cs",
-              "RelativeToolTip": "Core\\Application\\Mappers\\ParentMapper.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-17T14:55:32.058Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "StudentMapper.cs",
-              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\Mappers\\StudentMapper.cs",
-              "RelativeDocumentMoniker": "Core\\Application\\Mappers\\StudentMapper.cs",
-              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\Mappers\\StudentMapper.cs",
-              "RelativeToolTip": "Core\\Application\\Mappers\\StudentMapper.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-17T14:55:18.615Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "TutorDto.cs",
-              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\DTOs\\TutorDto.cs",
-              "RelativeDocumentMoniker": "Core\\Application\\DTOs\\TutorDto.cs",
-              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\DTOs\\TutorDto.cs",
-              "RelativeToolTip": "Core\\Application\\DTOs\\TutorDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-13T03:48:30.605Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "UserService.cs",
               "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\Services\\UserService.cs",
               "RelativeDocumentMoniker": "Core\\Application\\Services\\UserService.cs",
               "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\Services\\UserService.cs",
               "RelativeToolTip": "Core\\Application\\Services\\UserService.cs",
-              "ViewState": "AgIAAOIAAABAmJmZmZkVwO8AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAGoAAAAAzMzMzMwQwLoAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-13T05:25:16.754Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "IStudentRepo.cs",
-              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\Interfaces\\Repositories\\IStudentRepo.cs",
-              "RelativeDocumentMoniker": "Core\\Application\\Interfaces\\Repositories\\IStudentRepo.cs",
-              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\Interfaces\\Repositories\\IStudentRepo.cs",
-              "RelativeToolTip": "Core\\Application\\Interfaces\\Repositories\\IStudentRepo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-13T02:49:06.002Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "StudentRepositories.cs",
-              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Infrastructure\\Repositories\\StudentRepositories.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\StudentRepositories.cs",
-              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Infrastructure\\Repositories\\StudentRepositories.cs",
-              "RelativeToolTip": "Infrastructure\\Repositories\\StudentRepositories.cs",
-              "ViewState": "AgIAABsAAAAAMzMzMzMjwCgAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-13T03:40:36.78Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 7,
               "Title": "StudentService.cs",
               "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\Services\\StudentService.cs",
               "RelativeDocumentMoniker": "Core\\Application\\Services\\StudentService.cs",
@@ -386,20 +316,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Parent.cs",
-              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Domain\\Entities\\Parent.cs",
-              "RelativeDocumentMoniker": "Core\\Domain\\Entities\\Parent.cs",
-              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Domain\\Entities\\Parent.cs",
-              "RelativeToolTip": "Core\\Domain\\Entities\\Parent.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-13T00:01:38.229Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 10,
               "Title": "Student.cs",
               "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Domain\\Entities\\Student.cs",
               "RelativeDocumentMoniker": "Core\\Domain\\Entities\\Student.cs",
@@ -412,7 +329,98 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Presentation\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Presentation\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Presentation\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Presentation\\Controllers\\UserController.cs",
+              "ViewState": "AgIAABQAAADAzMzMzMw7wBwAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-14T15:53:12.587Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "JWTAuthenticationManager.cs",
+              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\Authentication\\JWTAuthenticationManager.cs",
+              "RelativeDocumentMoniker": "Core\\Application\\Authentication\\JWTAuthenticationManager.cs",
+              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\Authentication\\JWTAuthenticationManager.cs",
+              "RelativeToolTip": "Core\\Application\\Authentication\\JWTAuthenticationManager.cs",
+              "ViewState": "AgIAABgAAAAAzMzMzMwEwC8AAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-13T05:46:19.82Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ParentController.cs",
+              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Presentation\\Controllers\\ParentController.cs",
+              "RelativeDocumentMoniker": "Presentation\\Controllers\\ParentController.cs",
+              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Presentation\\Controllers\\ParentController.cs",
+              "RelativeToolTip": "Presentation\\Controllers\\ParentController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwAYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-14T15:52:00.918Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAADwAAACANDMzMzMlwBcAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-13T06:42:50.07Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-12-13T06:45:54.658Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "railway.toml",
+              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\railway.toml",
+              "RelativeDocumentMoniker": "railway.toml",
+              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\railway.toml",
+              "RelativeToolTip": "railway.toml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-12-17T12:31:52.85Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Dockerfile",
+              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Dockerfile",
+              "RelativeDocumentMoniker": "Dockerfile",
+              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Dockerfile",
+              "RelativeToolTip": "Dockerfile",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-12-17T12:29:39.04Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Domain\\Entities\\User.cs",
               "RelativeDocumentMoniker": "Core\\Domain\\Entities\\User.cs",
@@ -425,7 +433,111 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
+              "Title": "Parent.cs",
+              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Domain\\Entities\\Parent.cs",
+              "RelativeDocumentMoniker": "Core\\Domain\\Entities\\Parent.cs",
+              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Domain\\Entities\\Parent.cs",
+              "RelativeToolTip": "Core\\Domain\\Entities\\Parent.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-13T00:01:38.229Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "StudentRepositories.cs",
+              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Infrastructure\\Repositories\\StudentRepositories.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\StudentRepositories.cs",
+              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Infrastructure\\Repositories\\StudentRepositories.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\StudentRepositories.cs",
+              "ViewState": "AgIAABsAAAAAMzMzMzMjwCgAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-13T03:40:36.78Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "StudentController.cs",
+              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Presentation\\Controllers\\StudentController.cs",
+              "RelativeDocumentMoniker": "Presentation\\Controllers\\StudentController.cs",
+              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Presentation\\Controllers\\StudentController.cs",
+              "RelativeToolTip": "Presentation\\Controllers\\StudentController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABcAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-14T15:52:26.322Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "IStudentRepo.cs",
+              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\Interfaces\\Repositories\\IStudentRepo.cs",
+              "RelativeDocumentMoniker": "Core\\Application\\Interfaces\\Repositories\\IStudentRepo.cs",
+              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\Interfaces\\Repositories\\IStudentRepo.cs",
+              "RelativeToolTip": "Core\\Application\\Interfaces\\Repositories\\IStudentRepo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-13T02:49:06.002Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "TutorDto.cs",
+              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\DTOs\\TutorDto.cs",
+              "RelativeDocumentMoniker": "Core\\Application\\DTOs\\TutorDto.cs",
+              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\DTOs\\TutorDto.cs",
+              "RelativeToolTip": "Core\\Application\\DTOs\\TutorDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-13T03:48:30.605Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ParentMapper.cs",
+              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\Mappers\\ParentMapper.cs",
+              "RelativeDocumentMoniker": "Core\\Application\\Mappers\\ParentMapper.cs",
+              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\Mappers\\ParentMapper.cs",
+              "RelativeToolTip": "Core\\Application\\Mappers\\ParentMapper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-17T14:55:32.058Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "StudentMapper.cs",
+              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\Mappers\\StudentMapper.cs",
+              "RelativeDocumentMoniker": "Core\\Application\\Mappers\\StudentMapper.cs",
+              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\Mappers\\StudentMapper.cs",
+              "RelativeToolTip": "Core\\Application\\Mappers\\StudentMapper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-17T14:55:18.615Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "TutorMapper.cs",
+              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\Mappers\\TutorMapper.cs",
+              "RelativeDocumentMoniker": "Core\\Application\\Mappers\\TutorMapper.cs",
+              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\Mappers\\TutorMapper.cs",
+              "RelativeToolTip": "Core\\Application\\Mappers\\TutorMapper.cs",
+              "ViewState": "AgIAAAcAAABgZmZmZmY6wBUAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-17T14:55:52.242Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
               "Title": "ParentDto.cs",
               "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\DTOs\\ParentDto.cs",
               "RelativeDocumentMoniker": "Core\\Application\\DTOs\\ParentDto.cs",
@@ -438,7 +550,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 20,
               "Title": "StudentDto.cs",
               "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\DTOs\\StudentDto.cs",
               "RelativeDocumentMoniker": "Core\\Application\\DTOs\\StudentDto.cs",
@@ -451,33 +563,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Dockerfile",
-              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Dockerfile",
-              "RelativeDocumentMoniker": "Dockerfile",
-              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Dockerfile",
-              "RelativeToolTip": "Dockerfile",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-12-17T12:29:39.04Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "railway.toml",
-              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\railway.toml",
-              "RelativeDocumentMoniker": "railway.toml",
-              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\railway.toml",
-              "RelativeToolTip": "railway.toml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-12-17T12:31:52.85Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 23,
               "Title": "TutorReview.cs",
               "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Domain\\Entities\\TutorReview.cs",
               "RelativeDocumentMoniker": "Core\\Domain\\Entities\\TutorReview.cs",
@@ -489,7 +575,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 25,
               "Title": "Tutor.cs",
               "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Domain\\Entities\\Tutor.cs",
               "RelativeDocumentMoniker": "Core\\Domain\\Entities\\Tutor.cs",
@@ -501,20 +587,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-13T06:42:50.07Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 24,
               "Title": "UserProfile.cs",
               "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Domain\\Entities\\UserProfile.cs",
               "RelativeDocumentMoniker": "Core\\Domain\\Entities\\UserProfile.cs",
@@ -526,7 +599,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 21,
               "Title": "IUserService.cs",
               "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\Interfaces\\Services\\IUserService.cs",
               "RelativeDocumentMoniker": "Core\\Application\\Interfaces\\Services\\IUserService.cs",
@@ -538,7 +611,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 22,
               "Title": "ProfileDto.cs",
               "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\DTOs\\ProfileDto.cs",
               "RelativeDocumentMoniker": "Core\\Application\\DTOs\\ProfileDto.cs",
@@ -550,7 +623,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 26,
               "Title": "Location.cs",
               "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Domain\\Entities\\Location.cs",
               "RelativeDocumentMoniker": "Core\\Domain\\Entities\\Location.cs",
@@ -562,7 +635,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 27,
               "Title": "EmailVerification.cs",
               "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Domain\\Entities\\EmailVerification.cs",
               "RelativeDocumentMoniker": "Core\\Domain\\Entities\\EmailVerification.cs",
@@ -574,7 +647,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 28,
               "Title": "UserDto.cs",
               "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\DTOs\\UserDto.cs",
               "RelativeDocumentMoniker": "Core\\Application\\DTOs\\UserDto.cs",
@@ -586,19 +659,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Presentation\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "Presentation\\Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Presentation\\Controllers\\UserController.cs",
-              "RelativeToolTip": "Presentation\\Controllers\\UserController.cs",
-              "ViewState": "AgIAABIAAAAAMjMzMzPjvx8AAAA9AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-14T15:53:12.587Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 29,
               "Title": "DefaultRoles.cs",
               "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Domain\\Enums\\DefaultRoles.cs",
               "RelativeDocumentMoniker": "Core\\Domain\\Enums\\DefaultRoles.cs",
@@ -610,7 +671,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 30,
               "Title": "HolookorSystem.cs",
               "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Infrastructure\\Context\\HolookorSystem.cs",
               "RelativeDocumentMoniker": "Infrastructure\\Context\\HolookorSystem.cs",
@@ -622,19 +683,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\appsettings.json",
-              "RelativeDocumentMoniker": "appsettings.json",
-              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\appsettings.json",
-              "RelativeToolTip": "appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-12-13T06:45:54.658Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 32,
               "Title": "EmailVerificationServiceController.cs",
               "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Presentation\\Controllers\\EmailVerificationServiceController.cs",
               "RelativeDocumentMoniker": "Presentation\\Controllers\\EmailVerificationServiceController.cs",
@@ -646,19 +695,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "ParentController.cs",
-              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Presentation\\Controllers\\ParentController.cs",
-              "RelativeDocumentMoniker": "Presentation\\Controllers\\ParentController.cs",
-              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Presentation\\Controllers\\ParentController.cs",
-              "RelativeToolTip": "Presentation\\Controllers\\ParentController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-14T15:52:00.918Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 31,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\appsettings.Development.json",
               "RelativeDocumentMoniker": "appsettings.Development.json",
@@ -670,19 +707,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "StudentController.cs",
-              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Presentation\\Controllers\\StudentController.cs",
-              "RelativeDocumentMoniker": "Presentation\\Controllers\\StudentController.cs",
-              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Presentation\\Controllers\\StudentController.cs",
-              "RelativeToolTip": "Presentation\\Controllers\\StudentController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABcAAABCAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-14T15:52:26.322Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 34,
               "Title": "TutorController.cs",
               "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Presentation\\Controllers\\TutorController.cs",
               "RelativeDocumentMoniker": "Presentation\\Controllers\\TutorController.cs",
@@ -694,7 +719,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 35,
               "Title": "TutorService.cs",
               "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\Services\\TutorService.cs",
               "RelativeDocumentMoniker": "Core\\Application\\Services\\TutorService.cs",
@@ -706,7 +731,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 33,
               "Title": "EmailVerificationService.cs",
               "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\Services\\EmailVerificationService.cs",
               "RelativeDocumentMoniker": "Core\\Application\\Services\\EmailVerificationService.cs",
@@ -715,18 +740,6 @@
               "ViewState": "AgIAAAsAAACAZmZmZmYowA0AAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-14T12:08:48Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 35,
-              "Title": "JWTAuthenticationManager.cs",
-              "DocumentMoniker": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\Authentication\\JWTAuthenticationManager.cs",
-              "RelativeDocumentMoniker": "Core\\Application\\Authentication\\JWTAuthenticationManager.cs",
-              "ToolTip": "C:\\Users\\Lawson\\Desktop\\HolookorBackend\\Core\\Application\\Authentication\\JWTAuthenticationManager.cs",
-              "RelativeToolTip": "Core\\Application\\Authentication\\JWTAuthenticationManager.cs",
-              "ViewState": "AgIAACEAAAAAzMzMzMwEwCsAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-13T05:46:19.82Z"
             },
             {
               "$type": "Document",

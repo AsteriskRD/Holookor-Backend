@@ -1,4 +1,5 @@
 using HolookorBackend.Core.Application.Authentication;
+using HolookorBackend.Core.Application.Exceptions;
 using HolookorBackend.Core.Application.Interfaces.Repositories;
 using HolookorBackend.Core.Application.Interfaces.Services;
 using HolookorBackend.Core.Application.Responses;
@@ -126,6 +127,8 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseMiddleware<GlobalExceptionMiddleware>();
 
 app.MapControllers();
 
