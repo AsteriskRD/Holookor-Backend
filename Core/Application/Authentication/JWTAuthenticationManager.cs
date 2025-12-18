@@ -47,7 +47,8 @@ namespace HolookorBackend.Core.Application.Authentication
             {
                 Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.UtcNow.AddHours(3),
-
+                Issuer = _configuration["JWTSettings:Issuer"],
+                Audience = _configuration["JWTSettings:Audience"],
                 SigningCredentials = new SigningCredentials(
                   new SymmetricSecurityKey(key),
                   SecurityAlgorithms.HmacSha256Signature
