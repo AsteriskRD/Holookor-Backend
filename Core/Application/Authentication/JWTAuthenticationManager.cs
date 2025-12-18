@@ -43,17 +43,20 @@ namespace HolookorBackend.Core.Application.Authentication
                     claims.Add(new Claim(ClaimTypes.GivenName, user.FirstName));
                 }
 
-                var tokenDescriptor = new SecurityTokenDescriptor
-                {
-                    Subject = new ClaimsIdentity(claims),
-                    Expires = DateTime.UtcNow.AddHours(3),
-                    SigningCredentials = new SigningCredentials(
-                        new SymmetricSecurityKey(key),
-                        SecurityAlgorithms.HmacSha256Signature
-                    )
-                };
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.UtcNow.AddHours(3),
+                Issuer = _configuration["JWTSettings:Issuer"],
+                Audience = _configuration["JWTSettings:Audience"],
+                SigningCredentials = new SigningCredentials(
+                  new SymmetricSecurityKey(key),
+                  SecurityAlgorithms.HmacSha256Signature
+                           )
+            };
 
-                var token = tokenHandler.CreateToken(tokenDescriptor);
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
 
                 return tokenHandler.WriteToken(token);
             }
