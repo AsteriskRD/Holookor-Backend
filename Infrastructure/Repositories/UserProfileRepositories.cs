@@ -19,12 +19,14 @@ namespace HolookorBackend.Infrastructure.Repositories
         public async Task<UserProfile?> Get(string id)
         {
             return await _context.UserProfiles
+                .Include(p => p.Users)
                 .SingleOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<ICollection<UserProfile>> GetAll(Paging paging)
         {
             return await _context.UserProfiles
+                .Include(p => p.Users)
                 .Skip((paging.PageNumber - 1) * paging.PageSize)
                 .Take(paging.PageSize)
                 .ToListAsync();
@@ -33,6 +35,7 @@ namespace HolookorBackend.Infrastructure.Repositories
         public async Task<UserProfile?> GetAsync(Expression<Func<UserProfile, bool>> predicate)
         {
             return await _context.UserProfiles
+                .Include(p => p.Users)
                 .SingleOrDefaultAsync(predicate);
         }
     }

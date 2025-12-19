@@ -26,7 +26,12 @@ namespace HolookorBackend.Presentation.Controllers
         public async Task<IActionResult> Send()
         {
             var profileId = User.FindFirstValue("userProfileId")!;
+            if (string.IsNullOrEmpty(profileId))
+                return Unauthorized(new { status = false, message = "UserProfileId claim missing" });
+
             var profile = await _profileRepo.Get(profileId);
+            if (string.IsNullOrEmpty(profileId))
+                return Unauthorized(new { status = false, message = "UserProfileId claim missing" });
 
             await _service.SendCodeAsync(profile!);
             return Ok(new { message = "Verification code sent" });

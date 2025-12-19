@@ -38,6 +38,18 @@
         }
       }
     },
+    "/": {
+      "get": {
+        "tags": [
+          "HolookorBackend"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/parents": {
       "post": {
         "tags": [
@@ -321,6 +333,18 @@
       }
     },
     "/api/users/me": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/users/Profile": {
       "get": {
         "tags": [
           "Users"
