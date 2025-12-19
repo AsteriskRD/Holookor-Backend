@@ -30,7 +30,7 @@ namespace HolookorBackend.Presentation.Controllers
             if (string.IsNullOrEmpty(email))
                 return Unauthorized(new { status = false, message = "email claim missing" });
 
-            var firstName = User.FindFirstValue(ClaimTypes.) ?? "User";
+            var firstName = User.FindFirstValue(ClaimTypes.GivenName) ?? "User";
 
             if (string.IsNullOrEmpty(profileId))
                 return Unauthorized(new { message = "Profile ID missing from token" });
