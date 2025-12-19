@@ -1,5 +1,4 @@
 ﻿using HolookorBackend.Core.Application.DTOs;
-using HolookorBackend.Core.Domain.Entities;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;

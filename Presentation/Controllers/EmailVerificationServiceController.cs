@@ -1,5 +1,4 @@
-﻿using HolookorBackend.Core.Application.Interfaces.Repositories;
-using HolookorBackend.Core.Application.Interfaces.Services;
+﻿using HolookorBackend.Core.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -11,15 +10,12 @@ namespace HolookorBackend.Presentation.Controllers
     [Route("api/email-verification")]
     public class EmailVerificationController : ControllerBase
     {
-        private readonly IUserProfileRepo _profileRepo;
         private readonly IEmailVerificationService _service;
 
         public EmailVerificationController(
-            IEmailVerificationService service,
-            IUserProfileRepo profileRepo)
+            IEmailVerificationService service)
         {
             _service = service;
-            _profileRepo = profileRepo;
         }
 
         [HttpPost("send")]
@@ -27,8 +23,8 @@ namespace HolookorBackend.Presentation.Controllers
         {
             var profileId = User.FindFirstValue("userProfileId");
             var email = User.FindFirstValue(ClaimTypes.Email);
-            if (string.IsNullOrEmpty(email))
-                return Unauthorized(new { status = false, message = "email claim missing" });
+            if (string.IsNullOrWhiteSpace(email))
+                return BadRequest(new { message = "Email missing from token" });
 
             var firstName = User.FindFirstValue(ClaimTypes.GivenName) ?? "User";
 
