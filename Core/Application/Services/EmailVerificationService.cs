@@ -36,20 +36,21 @@ namespace HolookorBackend.Core.Application.Services
             await _repo.CreateAsync(verification);
             await _repo.SaveAsync();
 
-            try
-            {
-                await _mail.SendAsync(new MailData
-                {
-                    EmailToId = email,
-                    EmailToName = firstName,
-                    EmailSubject = "Verify your email",
-                    EmailBody = $"<h3>Your verification code: {code}</h3>"
-                });
-            }
-            catch (Exception ex)
-            {
-                throw new DomainException($"Failed to send verification email: {ex.Message}");
-            }
+
+            //try
+            //{
+            //    await _mail.SendAsync(new MailData
+            //    {
+            //        EmailToId = email,
+            //        EmailToName = firstName,
+            //        EmailSubject = "Verify your email",
+            //        EmailBody = $"<h3>Your verification code: {code}</h3>"
+            //    });
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new DomainException($"Failed to send verification email: {ex.Message}");
+            //}
         }
 
         public async Task<bool> ConfirmCode(string userProfileId, string code)
