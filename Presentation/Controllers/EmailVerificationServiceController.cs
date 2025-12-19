@@ -25,16 +25,22 @@ namespace HolookorBackend.Presentation.Controllers
         [HttpPost("send")]
         public async Task<IActionResult> Send()
         {
-            var profileId = User.FindFirstValue("userProfileId")!;
-            if (string.IsNullOrEmpty(profileId))
-                return Unauthorized(new { status = false, message = "UserProfileId claim missing" });
+            var profileId = User.FindFirstValue("userProfileId");
+            var email = User.FindFirstValue(ClaimTypes.Email);
+            if (string.IsNullOrEmpty(email))
+                return Unauthorized(new { status = false, message = "email claim missing" });
 
-            var profile = await _profileRepo.Get(profileId);
-            if (string.IsNullOrEmpty(profileId))
-                return Unauthorized(new { status = false, message = "UserProfileId claim missing" });
+            var firstName = User.FindFirstValue(ClaimTypes.) ?? "User";
 
-            await _service.SendCodeAsync(profile!);
-            return Ok(new { message = "Verification code sent" });
+            if (string.IsNullOrEmpty(profileId))
+                return Unauthorized(new { message = "Profile ID missing from token" });
+
+            await _service.SendCodeAsync(profileId, email!, firstName);
+
+            return Ok(new
+            {
+                message = $"Verification code sent to {email}"
+            });
         }
 
         [HttpPost("confirm")]

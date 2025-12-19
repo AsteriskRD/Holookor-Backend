@@ -1,7 +1,9 @@
-﻿using HolookorBackend.Core.Application.Interfaces.Repositories;
+﻿using HolookorBackend.Core.Application.Exceptions.HolookorBackend.Core.Application.Exceptions;
+using HolookorBackend.Core.Application.Interfaces.Repositories;
 using HolookorBackend.Core.Application.Interfaces.Services;
 using HolookorBackend.Core.Domain.Entities;
 using HolookorBackend.Infrastructure.Email;
+using Org.BouncyCastle.Asn1.Pkcs;
 
 namespace HolookorBackend.Core.Application.Services
 {
@@ -21,23 +23,33 @@ namespace HolookorBackend.Core.Application.Services
             _mail = mail;
         }
 
-        public async Task SendCodeAsync(UserProfile profile)
+        public async Task SendCodeAsync(string profileId, string email, string firstName)
         {
-            await _repo.InvalidateExisting(profile.Id);
+            if (string.IsNullOrWhiteSpace(email))
+                throw new DomainException("Email address not found in token");
+
+            await _repo.InvalidateExisting(profileId);
 
             var code = Random.Shared.Next(100000, 999999).ToString();
-            var verification = new EmailVerification(profile.Id, code);
+            var verification = new EmailVerification(profileId, code);
 
             await _repo.CreateAsync(verification);
             await _repo.SaveAsync();
 
-            await _mail.SendAsync(new MailData
+            try
             {
-                EmailToId = profile.Users!.Email,
-                EmailToName = profile.FirstName,
-                EmailSubject = "Verify your email",
-                EmailBody = $"<h3>Your verification code: {code}</h3>"
-            });
+                await _mail.SendAsync(new MailData
+                {
+                    EmailToId = email,
+                    EmailToName = firstName,
+                    EmailSubject = "Verify your email",
+                    EmailBody = $"<h3>Your verification code: {code}</h3>"
+                });
+            }
+            catch (Exception ex)
+            {
+                throw new DomainException($"Failed to send verification email: {ex.Message}");
+            }
         }
 
         public async Task<bool> ConfirmCode(string userProfileId, string code)
