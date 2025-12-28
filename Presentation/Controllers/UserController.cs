@@ -38,7 +38,7 @@ namespace HolookorBackend.Presentation.Controllers
         public async Task<IActionResult> Profile()
         {
             var userProfileId = User.FindFirstValue("userProfileId")!;
-            return Ok(await _service.GetById(userProfileId));
+            return Ok(await _service.GetByProfile(userProfileId));
         }
 
         [Authorize]

@@ -109,6 +109,10 @@
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
               "version": "[8.14.0, )"
+            },
+            "TimeZoneConverter": {
+              "target": "Package",
+              "version": "[7.2.0, )"
             }
           },
           "imports": [

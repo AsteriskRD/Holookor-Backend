@@ -1659,6 +1659,19 @@
           }
         }
       },
+      "TimeZoneConverter/7.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/net9.0/TimeZoneConverter.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/TimeZoneConverter.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "ZstdSharp.Port/0.8.6": {
         "type": "package",
         "compile": {
@@ -4889,6 +4902,26 @@
         "useSharedDesignerContext.txt"
       ]
     },
+    "TimeZoneConverter/7.2.0": {
+      "sha512": "4Poqu79dTmacVETqUJ53g3x4U21V/cmWPSlehdsVE4Q00akavvlRq+SRjcg/CmfO9ibOCjRl6TeUV7hkC5RC4w==",
+      "type": "package",
+      "path": "timezoneconverter/7.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "lib/net462/TimeZoneConverter.dll",
+        "lib/net462/TimeZoneConverter.xml",
+        "lib/net8.0/TimeZoneConverter.dll",
+        "lib/net8.0/TimeZoneConverter.xml",
+        "lib/net9.0/TimeZoneConverter.dll",
+        "lib/net9.0/TimeZoneConverter.xml",
+        "lib/netstandard2.0/TimeZoneConverter.dll",
+        "lib/netstandard2.0/TimeZoneConverter.xml",
+        "timezoneconverter.7.2.0.nupkg.sha512",
+        "timezoneconverter.nuspec"
+      ]
+    },
     "ZstdSharp.Port/0.8.6": {
       "sha512": "iP4jVLQoQmUjMU88g1WObiNr6YKZGvh4aOXn3yOJsHqZsflwRsxZPcIBvNXgjXO3vQKSLctXGLTpcBPLnWPS8A==",
       "type": "package",
@@ -4925,7 +4958,8 @@
       "Pomelo.EntityFrameworkCore.MySql >= 9.0.0",
       "SendGrid >= 9.29.3",
       "Swashbuckle.AspNetCore >= 9.0.6",
-      "System.IdentityModel.Tokens.Jwt >= 8.14.0"
+      "System.IdentityModel.Tokens.Jwt >= 8.14.0",
+      "TimeZoneConverter >= 7.2.0"
     ]
   },
   "packageFolders": {
@@ -5037,6 +5071,10 @@
           "System.IdentityModel.Tokens.Jwt": {
             "target": "Package",
             "version": "[8.14.0, )"
+          },
+          "TimeZoneConverter": {
+            "target": "Package",
+            "version": "[7.2.0, )"
           }
         },
         "imports": [

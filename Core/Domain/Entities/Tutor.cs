@@ -1,4 +1,5 @@
 ﻿using HolookorBackend.Core.Domain.Enums;
+using TimeZoneConverter;
 
 
 namespace HolookorBackend.Core.Domain.Entities
@@ -49,11 +50,23 @@ namespace HolookorBackend.Core.Domain.Entities
             SetTimeZone(timeZoneId);
         }
 
+        //public void SetTimeZone(string timeZoneId)
+        //{
+        //    if (!TimeZoneInfo.GetSystemTimeZones().Any(t => t.Id == timeZoneId))
+        //        throw new ArgumentException("Invalid TimeZone", nameof(timeZoneId));
+        //    TimeZoneId = timeZoneId;
+        //}
         public void SetTimeZone(string timeZoneId)
         {
-            if (!TimeZoneInfo.GetSystemTimeZones().Any(t => t.Id == timeZoneId))
-                throw new ArgumentException("Invalid TimeZone", nameof(timeZoneId));
-            TimeZoneId = timeZoneId;
+            try
+            {
+                var windowsTz = TZConvert.IanaToWindows(timeZoneId);
+                TimeZoneId = windowsTz;
+            }
+            catch
+            {
+                throw new ArgumentException("Invalid TimeZone");
+            }
         }
 
         public void AddQualification(string qualification)
