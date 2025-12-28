@@ -15,6 +15,9 @@ public class MailService : IMailService
     {
         var apiKey = _configuration["SENDGRID_API_KEY"];
         var fromEmail = _configuration["SENDGRID_FROM_EMAIL"];
+        Console.WriteLine("SENDGRID_API_KEY length: " + apiKey?.Length);
+        Console.WriteLine("FROM EMAIL: " + fromEmail);
+
 
         if (string.IsNullOrEmpty(apiKey) || string.IsNullOrEmpty(fromEmail))
         {
