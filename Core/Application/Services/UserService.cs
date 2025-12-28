@@ -1,7 +1,6 @@
 ﻿using HolookorBackend.Core.Application.Authentication;
 using HolookorBackend.Core.Application.DTOs;
 using HolookorBackend.Core.Application.DTOs.HolookorBackend.Core.Application.DTOs;
-using HolookorBackend.Core.Application.Exceptions;
 using HolookorBackend.Core.Application.Interfaces.Repositories;
 using HolookorBackend.Core.Application.Interfaces.Services;
 using HolookorBackend.Core.Application.Mappers;

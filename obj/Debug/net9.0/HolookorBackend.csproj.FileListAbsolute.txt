@@ -162,3 +162,6 @@ C:\Users\Lawson\Desktop\HolookorBackend\obj\Debug\net9.0\refint\HolookorBackend.
 C:\Users\Lawson\Desktop\HolookorBackend\obj\Debug\net9.0\HolookorBackend.pdb
 C:\Users\Lawson\Desktop\HolookorBackend\obj\Debug\net9.0\HolookorBackend.genruntimeconfig.cache
 C:\Users\Lawson\Desktop\HolookorBackend\obj\Debug\net9.0\ref\HolookorBackend.dll
+C:\Users\Lawson\Desktop\HolookorBackend\bin\Debug\net9.0\Newtonsoft.Json.dll
+C:\Users\Lawson\Desktop\HolookorBackend\bin\Debug\net9.0\SendGrid.dll
+C:\Users\Lawson\Desktop\HolookorBackend\bin\Debug\net9.0\StarkbankEcdsa.dll

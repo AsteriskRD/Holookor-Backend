@@ -1,40 +1,45 @@
-﻿using Microsoft.Extensions.Options;
-using System.Net;
-using System.Net.Mail;
+﻿using HolookorBackend.Infrastructure.Email;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 
-namespace HolookorBackend.Infrastructure.Email
+public class MailService : IMailService
 {
-    public class MailService : IMailService
-    {
-        private readonly MailSettings _settings;
+    private readonly IConfiguration _configuration;
 
-        public MailService(IOptions<MailSettings> settings)
+    public MailService(IConfiguration configuration)
+    {
+        _configuration = configuration;
+    }
+
+    public async Task SendAsync(MailData mailData)
+    {
+        var apiKey = _configuration["SENDGRID_API_KEY"];
+        var fromEmail = _configuration["SENDGRID_FROM_EMAIL"];
+
+        if (string.IsNullOrEmpty(apiKey) || string.IsNullOrEmpty(fromEmail))
         {
-            _settings = settings.Value;
+            throw new Exception("SendGrid configuration is missing");
         }
 
-        public async Task SendAsync(MailData mailData)
+        var client = new SendGridClient(apiKey);
+
+        var from = new EmailAddress(fromEmail, "Holookor");
+        var to = new EmailAddress(mailData.EmailToId, mailData.EmailToName);
+
+        var msg = MailHelper.CreateSingleEmail(
+            from,
+            to,
+            mailData.EmailSubject,
+            plainTextContent: null,
+            htmlContent: mailData.EmailBody
+        );
+
+        var response = await client.SendEmailAsync(msg);
+
+        if (!response.IsSuccessStatusCode)
         {
-            var message = new MailMessage
-            {
-                From = new MailAddress(_settings.SenderEmail, _settings.SenderName),
-                Subject = mailData.EmailSubject,
-                Body = mailData.EmailBody,
-                IsBodyHtml = true
-            };
-
-            message.To.Add(new MailAddress(mailData.EmailToId, mailData.EmailToName));
-
-            using var smtp = new SmtpClient(_settings.Server, _settings.Port)
-            {
-                Credentials = new NetworkCredential(
-                    _settings.UserName,
-                    _settings.Password
-                ),
-                EnableSsl = true
-            };
-
-            await smtp.SendMailAsync(message);
+            var body = await response.Body.ReadAsStringAsync();
+            throw new Exception($"SendGrid failed: {body}");
         }
     }
 }

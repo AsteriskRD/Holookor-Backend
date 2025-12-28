@@ -53,9 +53,6 @@ builder.Services.AddScoped<IEmailVerificationRepo, EmailVerificationRepo>();
 
 builder.Services.AddHostedService<VerificationCleanupWorker>();
 
-builder.Services.Configure<MailSettings>(
-    builder.Configuration.GetSection("MailSettings")
-);
 builder.Services.AddTransient<IMailService, MailService>();
 
 

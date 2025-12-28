@@ -4,4 +4,5 @@
     {
         Task SendAsync(MailData mailData);
     }
+
 }

@@ -3,7 +3,6 @@ using HolookorBackend.Core.Application.Interfaces.Repositories;
 using HolookorBackend.Core.Application.Interfaces.Services;
 using HolookorBackend.Core.Domain.Entities;
 using HolookorBackend.Infrastructure.Email;
-using Org.BouncyCastle.Asn1.Pkcs;
 
 namespace HolookorBackend.Core.Application.Services
 {
@@ -37,20 +36,20 @@ namespace HolookorBackend.Core.Application.Services
             await _repo.SaveAsync();
 
 
-            //try
-            //{
-            //    await _mail.SendAsync(new MailData
-            //    {
-            //        EmailToId = email,
-            //        EmailToName = firstName,
-            //        EmailSubject = "Verify your email",
-            //        EmailBody = $"<h3>Your verification code: {code}</h3>"
-            //    });
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw new DomainException($"Failed to send verification email: {ex.Message}");
-            //}
+            try
+            {
+                await _mail.SendAsync(new MailData
+                {
+                    EmailToId = email,
+                    EmailToName = firstName,
+                    EmailSubject = "Verify your email",
+                    EmailBody = $"<h3>Your verification code: {code}</h3>"
+                });
+            }
+            catch (Exception ex)
+            {
+                throw new DomainException($"Failed to send verification email: {ex.Message}");
+            }
         }
 
         public async Task<bool> ConfirmCode(string userProfileId, string code)
