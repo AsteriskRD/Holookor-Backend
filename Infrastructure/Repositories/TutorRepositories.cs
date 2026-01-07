@@ -32,11 +32,31 @@ namespace HolookorBackend.Infrastructure.Repositories
                  .ToListAsync();
         }
 
+        public async Task<ICollection<Tutor>> GetAllAsync(Expression<Func<Tutor, bool>> predicate, Paging paging)
+        {
+            return await _context.Tutors
+             .Include(t => t.Profile)
+             .Include(t => t.Reviews)
+             .Where(predicate)
+             .Skip((paging.PageNumber - 1) * paging.PageSize)
+             .Take(paging.PageSize)
+             .ToListAsync();
+        }
+
         public async Task<Tutor?> GetAsync(Expression<Func<Tutor, bool>> predicate)
         {
             return await _context.Tutors
                 .Include(x => x.Profile)
                 .SingleOrDefaultAsync(predicate);
         }
+
+        public IQueryable<Tutor> Query(Expression<Func<Tutor, bool>> predicate)
+        {
+            return _context.Tutors
+                .Include(t => t.Profile)
+                .Include(t => t.Reviews)
+                .Where(predicate);
+        }
+
     }
 }

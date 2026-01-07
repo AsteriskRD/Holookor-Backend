@@ -1,6 +1,6 @@
 ﻿using HolookorBackend.Core.Application.DTOs;
 using HolookorBackend.Core.Application.Interfaces.Services;
-using HolookorBackend.Core.Domain.Entities;
+using HolookorBackend.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -29,6 +29,13 @@ namespace HolookorBackend.Presentation.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(string id)
             => Ok(await _service.GetById(id));
+
+        [HttpGet("search")]
+        public async Task<IActionResult> Search([FromQuery] TutorSearchRequestDto filter,[FromQuery] Paging paging)
+        {
+            var result = await _service.SearchAsync(filter, paging);
+            return Ok(result);
+        }
     }
 
 }

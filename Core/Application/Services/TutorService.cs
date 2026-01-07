@@ -1,11 +1,13 @@
 ﻿using HolookorBackend.Core.Application.DTOs;
-using HolookorBackend.Core.Application.DTOs.HolookorBackend.Core.Application.DTOs;
+using HolookorBackend.Core.Application.Exceptions;
 using HolookorBackend.Core.Application.Exceptions.HolookorBackend.Core.Application.Exceptions;
 using HolookorBackend.Core.Application.Interfaces.Repositories;
 using HolookorBackend.Core.Application.Interfaces.Services;
 using HolookorBackend.Core.Application.Responses;
 using HolookorBackend.Core.Domain.Entities;
+using HolookorBackend.Core.Domain.Enums;
 using HolookorBackend.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace HolookorBackend.Core.Application.Services
 {
@@ -18,8 +20,8 @@ namespace HolookorBackend.Core.Application.Services
         {
             _tutorRepo = tutorRepo;
             _userRepo = userRepo;
-        }
 
+        }
 
         public async Task<BaseResponse<TutorDto>> Register(CreateTutorRequest model, string userProfileId)
         {
@@ -83,6 +85,88 @@ namespace HolookorBackend.Core.Application.Services
             };
         }
 
+        public async Task<BaseResponse<ICollection<TutorSearchResponseDto>>> SearchAsync(TutorSearchRequestDto filter, Paging paging)
+        {
+            var predicate = PredicateBuilder.True<Tutor>();
+
+            predicate = predicate.And(t => t.IsVerified && t.IsAvailableStatus);
+
+            if (!string.IsNullOrWhiteSpace(filter.Subject))
+                predicate = predicate.And(t => t.Subjects.Contains(filter.Subject));
+
+            if (filter.Gender.HasValue)
+                predicate = predicate.And(t => t.Gender == filter.Gender);
+
+            if (filter.MinRate.HasValue)
+                predicate = predicate.And(t => t.HourlyRate >= filter.MinRate);
+
+            if (filter.MaxRate.HasValue)
+                predicate = predicate.And(t => t.HourlyRate <= filter.MaxRate);
+
+            if (filter.MinRating.HasValue)
+                predicate = predicate.And(t =>
+                    t.Reviews.Any() &&
+                    t.Reviews.Average(r => r.Rating) >= filter.MinRating);
+
+            var query = _tutorRepo.Query(predicate);
+
+            
+            query = filter.SortBy switch
+            {
+                TutorSortOption.PriceLowToHigh =>
+                    query.OrderBy(t => t.HourlyRate),
+
+                TutorSortOption.PriceHighToLow =>
+                    query.OrderByDescending(t => t.HourlyRate),
+
+                TutorSortOption.RatingHighToLow =>
+                    query.OrderByDescending(t =>
+                        t.Reviews.Any() ? t.Reviews.Average(r => r.Rating) : 0),
+
+                TutorSortOption.ExperienceHighToLow =>
+                    query.OrderByDescending(t => t.YearsOfExperience),
+
+                _ =>
+                    query.OrderByDescending(t => t.DateCreated)
+            };
+
+            var totalCount = await query.CountAsync();
+
+            var tutors = await query
+                .Skip((paging.PageNumber - 1) * paging.PageSize)
+                .Take(paging.PageSize)
+                .ToListAsync();
+
+            var result = tutors.Select(t =>
+            {
+                var avgRating = t.Reviews.Any()
+                    ? t.Reviews.Average(r => r.Rating)
+                    : 0;
+
+                return new TutorSearchResponseDto(
+                    t.Id,
+                    $"{t.Profile.FirstName} {t.Profile.LastName}",
+                    t.Gender,
+                    t.HourlyRate,
+                    t.IsAvailableStatus,
+                    t.IsVerified,
+                    Math.Round(avgRating, 1),
+                    t.Reviews.Count,
+                    t.Subjects.ToList()
+                );
+            }).ToList();
+
+            return new BaseResponse<ICollection<TutorSearchResponseDto>>
+            {
+                Status = true,
+                Data = result,
+                TotalCount = totalCount,
+                PageNumber = paging.PageNumber,
+                PageSize = paging.PageSize
+            };
+        }
+
+
         private static TutorDto Map(Tutor t)
             => new(
                 t.Id,
@@ -112,6 +196,7 @@ namespace HolookorBackend.Core.Application.Services
                 PageNumber = paging?.PageNumber ?? 1,
                 PageSize = paging?.PageSize ?? total
             };
-    }
 
+        
+    }
 }

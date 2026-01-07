@@ -11,7 +11,7 @@ namespace HolookorBackend.Core.Application.DTOs
         IReadOnlyCollection<string> Qualifications,
         IReadOnlyCollection<string> Subjects,
         IReadOnlyCollection<string> Availability,
-        string YearsOfExperience,
+        int YearsOfExperience,
         string CredentialsDocument,
         string GovernmentID,
         decimal HourlyRate,
@@ -26,7 +26,7 @@ namespace HolookorBackend.Core.Application.DTOs
         Gender Gender,
         DateOnly DateOfBirth,
         Location Location,
-        string YearsOfExperience,
+        int YearsOfExperience,
         string CredentialsDocument,
         string GovernmentID,
         decimal HourlyRate,
@@ -42,7 +42,7 @@ namespace HolookorBackend.Core.Application.DTOs
         Gender? Gender = null,
         DateOnly? DateOfBirth = null,
         Location? Location = null,
-        string? YearsOfExperience = null,
+        int? YearsOfExperience = null,
         string? CredentialsDocument = null,
         string? GovernmentID = null,
         decimal? HourlyRate = null,
@@ -53,5 +53,47 @@ namespace HolookorBackend.Core.Application.DTOs
         string[]? Availability = null,
         string? ProfilePictureURL = null
     );
+
+    public record TutorSearchDto(
+    string TutorId,
+    string FullName,
+    Gender Gender,
+    decimal HourlyRate,
+    bool IsVerified,
+    bool IsAvailable,
+    double AverageRating,
+    int ReviewCount,
+    string? ProfilePictureUrl,
+    IReadOnlyList<string> Subjects
+    );
+
+
+    //tutor search 
+    public class TutorSearchRequestDto
+    {
+        public string? Subject { get; set; }
+        public Gender? Gender { get; set; }
+        public decimal? MinRate { get; set; }
+        public decimal? MaxRate { get; set; }
+        public int? MinRating { get; set; }
+        public string? Availability { get; set; }
+        public string? Name { get; set; }
+        public TutorSortOption? SortBy { get; set; } = TutorSortOption.Newest;
+
+    }
+
+    public record TutorSearchResponseDto(
+    string TutorId,
+    string FullName,
+    Gender Gender,
+    decimal HourlyRate,
+    bool IsAvailable,
+    bool IsVerified,
+    double AverageRating,
+    int ReviewCount,
+    IReadOnlyCollection<string> Subjects
+    );
+
+
 }
 

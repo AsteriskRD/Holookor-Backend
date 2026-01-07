@@ -50,7 +50,10 @@ C:\Users\Lawson\Desktop\HolookorBackend\bin\Debug\net9.0\Mono.TextTemplating.dll
 C:\Users\Lawson\Desktop\HolookorBackend\bin\Debug\net9.0\MySql.Data.dll
 C:\Users\Lawson\Desktop\HolookorBackend\bin\Debug\net9.0\MySql.EntityFrameworkCore.dll
 C:\Users\Lawson\Desktop\HolookorBackend\bin\Debug\net9.0\MySqlConnector.dll
+C:\Users\Lawson\Desktop\HolookorBackend\bin\Debug\net9.0\Newtonsoft.Json.dll
 C:\Users\Lawson\Desktop\HolookorBackend\bin\Debug\net9.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\Lawson\Desktop\HolookorBackend\bin\Debug\net9.0\SendGrid.dll
+C:\Users\Lawson\Desktop\HolookorBackend\bin\Debug\net9.0\StarkbankEcdsa.dll
 C:\Users\Lawson\Desktop\HolookorBackend\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\Lawson\Desktop\HolookorBackend\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\Lawson\Desktop\HolookorBackend\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -66,6 +69,7 @@ C:\Users\Lawson\Desktop\HolookorBackend\bin\Debug\net9.0\System.Security.Cryptog
 C:\Users\Lawson\Desktop\HolookorBackend\bin\Debug\net9.0\System.Security.Permissions.dll
 C:\Users\Lawson\Desktop\HolookorBackend\bin\Debug\net9.0\System.Text.Json.dll
 C:\Users\Lawson\Desktop\HolookorBackend\bin\Debug\net9.0\System.Windows.Extensions.dll
+C:\Users\Lawson\Desktop\HolookorBackend\bin\Debug\net9.0\TimeZoneConverter.dll
 C:\Users\Lawson\Desktop\HolookorBackend\bin\Debug\net9.0\ZstdSharp.dll
 C:\Users\Lawson\Desktop\HolookorBackend\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.resources.dll
 C:\Users\Lawson\Desktop\HolookorBackend\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.resources.dll
@@ -162,6 +166,3 @@ C:\Users\Lawson\Desktop\HolookorBackend\obj\Debug\net9.0\refint\HolookorBackend.
 C:\Users\Lawson\Desktop\HolookorBackend\obj\Debug\net9.0\HolookorBackend.pdb
 C:\Users\Lawson\Desktop\HolookorBackend\obj\Debug\net9.0\HolookorBackend.genruntimeconfig.cache
 C:\Users\Lawson\Desktop\HolookorBackend\obj\Debug\net9.0\ref\HolookorBackend.dll
-C:\Users\Lawson\Desktop\HolookorBackend\bin\Debug\net9.0\Newtonsoft.Json.dll
-C:\Users\Lawson\Desktop\HolookorBackend\bin\Debug\net9.0\SendGrid.dll
-C:\Users\Lawson\Desktop\HolookorBackend\bin\Debug\net9.0\StarkbankEcdsa.dll

@@ -9,5 +9,6 @@ namespace HolookorBackend.Core.Application.Interfaces.Services
         Task<BaseResponse<TutorDto>> Register(CreateTutorRequest model, string userId);
         Task<BaseResponse<TutorDto>> GetById(string id);
         Task<BaseResponse<ICollection<TutorDto>>> GetAll(Paging paging);
+        Task<BaseResponse<ICollection<TutorSearchResponseDto>>> SearchAsync(TutorSearchRequestDto filter, Paging paging);
     }
 }

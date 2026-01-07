@@ -12,13 +12,14 @@ namespace HolookorBackend.Core.Domain.Entities
         public DateOnly DateOfBirth { get; private set; }
         public Location Location { get; private set; } = default!;
         public ICollection<string> Availability { get; private set; } = new List<string>();
-        public string YearsOfExperience { get; private set; } = default!;
+        public int YearsOfExperience { get; private set; } = default!;
         public string? ProfilePictureURL { get; private set; }
         public string TimeZoneId { get; private set; } = default!;
         public string CredentialsDocument { get; private set; } = default!;
         public string GovernmentID { get; private set; } = default!;
         public decimal HourlyRate { get; private set; }
         public bool IsVerified { get; private set; } = false;
+        public bool IsAvailableStatus { get; private set; } = false;
         public string Bio { get; private set; } = default!;
         public bool IsDeleted { get; private set; } = false;
         public DateTime? DeletedOn { get; private set; }
@@ -32,7 +33,7 @@ namespace HolookorBackend.Core.Domain.Entities
             Gender gender,
             DateOnly dateOfBirth,
             Location location,
-            string yearsOfExperience,
+            int yearsOfExperience,
             string credentialsDocument,
             string governmentID,
             decimal hourlyRate,
@@ -50,12 +51,7 @@ namespace HolookorBackend.Core.Domain.Entities
             SetTimeZone(timeZoneId);
         }
 
-        //public void SetTimeZone(string timeZoneId)
-        //{
-        //    if (!TimeZoneInfo.GetSystemTimeZones().Any(t => t.Id == timeZoneId))
-        //        throw new ArgumentException("Invalid TimeZone", nameof(timeZoneId));
-        //    TimeZoneId = timeZoneId;
-        //}
+        
         public void SetTimeZone(string timeZoneId)
         {
             try
@@ -87,6 +83,10 @@ namespace HolookorBackend.Core.Domain.Entities
                 Availability.Add(availability);
         }
 
+        public void SetAvailability(bool isAvailable)
+        {
+            IsAvailableStatus = isAvailable;
+        }
         public void Verify()
         {
             IsVerified = true;
