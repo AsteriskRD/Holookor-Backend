@@ -1,4 +1,5 @@
 ﻿using HolookorBackend.Core.Application.Interfaces.Services;
+using HolookorBackend.Core.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -39,10 +40,10 @@ namespace HolookorBackend.Presentation.Controllers
         }
 
         [HttpPost("confirm")]
-        public async Task<IActionResult> Confirm(string code)
+        public async Task<IActionResult> Confirm(string code, [FromQuery] string userProfileId)
         {
-            var profileId = User.FindFirstValue("userProfileId")!;
-            var result = await _service.ConfirmCode(profileId, code);
+            //var profileId = User.FindFirstValue("userProfileId")!;
+            var result = await _service.ConfirmCode(userProfileId, code);
 
             return result
                 ? Ok(new { message = "Email verified successfully" })
