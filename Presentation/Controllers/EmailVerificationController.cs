@@ -6,7 +6,6 @@ using System.Security.Claims;
 namespace HolookorBackend.Presentation.Controllers
 {
     [ApiController]
-    [Authorize]
     [Route("api/email-verification")]
     public class EmailVerificationController : ControllerBase
     {
@@ -19,7 +18,7 @@ namespace HolookorBackend.Presentation.Controllers
         }
 
         [HttpPost("send")]
-        public async Task<IActionResult> Send(string userProfileId, string email, string firstName)
+        public async Task<IActionResult> Send([FromQuery] string userProfileId,[FromQuery] string email, [FromQuery]string firstName)
         {
             //var profileId = User.FindFirstValue("userProfileId");
             //var email = User.FindFirstValue(ClaimTypes.Email);
