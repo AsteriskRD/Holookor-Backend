@@ -129,16 +129,16 @@ internal class Program
             });
         });
 
+        
 
-        using (var scope = builder.Services.BuildServiceProvider().CreateScope())
+
+        var app = builder.Build();
+
+        using (var scope = app.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<HolookorSystem>();
             db.Database.Migrate();
         }
-
-        var app = builder.Build();
-
-
         app.UseSwagger();
         app.UseSwaggerUI(c =>
         {
