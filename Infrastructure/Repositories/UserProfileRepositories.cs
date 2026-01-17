@@ -18,25 +18,46 @@ namespace HolookorBackend.Infrastructure.Repositories
 
         public async Task<UserProfile?> Get(string id)
         {
-            return await _context.UserProfiles
-                .Include(p => p.Users)
-                .SingleOrDefaultAsync(x => x.Id == id);
+            try
+            {
+                return await _context.UserProfiles
+                    .Include(p => p.Users)
+                    .SingleOrDefaultAsync(x => x.Id == id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error occurred while retrieving UserProfile by id: {id}.", ex);
+            }
         }
 
         public async Task<ICollection<UserProfile>> GetAll(Paging paging)
         {
-            return await _context.UserProfiles
-                .Include(p => p.Users)
-                .Skip((paging.PageNumber - 1) * paging.PageSize)
-                .Take(paging.PageSize)
-                .ToListAsync();
+            try
+            {
+                return await _context.UserProfiles
+                    .Include(p => p.Users)
+                    .Skip((paging.PageNumber - 1) * paging.PageSize)
+                    .Take(paging.PageSize)
+                    .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error occurred while retrieving UserProfiles with paging.", ex);
+            }
         }
 
         public async Task<UserProfile?> GetAsync(Expression<Func<UserProfile, bool>> predicate)
         {
-            return await _context.UserProfiles
-                .Include(p => p.Users)
-                .SingleOrDefaultAsync(predicate);
+            try
+            {
+                return await _context.UserProfiles
+                    .Include(p => p.Users)
+                    .SingleOrDefaultAsync(predicate);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error occurred while retrieving UserProfile by predicate.", ex);
+            }
         }
     }
 }

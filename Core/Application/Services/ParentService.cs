@@ -24,82 +24,165 @@ namespace HolookorBackend.Core.Application.Services
 
         public async Task<BaseResponse<ParentDto>> Register(CreateParentRequest model)
         {
-            if (string.IsNullOrWhiteSpace(model.UserProfileId))
-                throw new ValidationException("UserProfileId is required");
-
-            var profile = await _userProfileRepo.Get(model.UserProfileId)
-                ?? throw new NotFoundException("User profile not found");
-
-            if (!profile.IsEmailVerified)
-                throw new DomainException("Email must be verified before creating a parent");
-
-            var parent = new Parent
+            try
             {
-                UserProfileId = profile.Id
-            };
+                if (string.IsNullOrWhiteSpace(model.UserProfileId))
+                    throw new ValidationException("UserProfileId is required");
 
-            if (model.ChildrenIds != null && model.ChildrenIds.Any())
-            {
-                foreach (var childId in model.ChildrenIds)
+                var profile = await _userProfileRepo.Get(model.UserProfileId)
+                    ?? throw new NotFoundException("User profile not found");
+
+                if (!profile.IsEmailVerified)
+                    throw new DomainException("Email must be verified before creating a parent");
+
+                var parent = new Parent
                 {
-                    var student = await _studentRepo.Get(childId)
-                        ?? throw new NotFoundException($"Student with id {childId} not found");
+                    UserProfileId = profile.Id
+                };
 
-                    parent.Children.Add(student);
+                if (model.ChildrenIds != null && model.ChildrenIds.Any())
+                {
+                    foreach (var childId in model.ChildrenIds)
+                    {
+                        var student = await _studentRepo.Get(childId)
+                            ?? throw new NotFoundException($"Student with id {childId} not found");
+
+                        parent.Children.Add(student);
+                    }
                 }
+
+                await _parentRepo.CreateAsync(parent);
+                await _parentRepo.SaveAsync();
+
+                return Success(Map(parent));
             }
-
-            await _parentRepo.CreateAsync(parent);
-            await _parentRepo.SaveAsync();
-
-            return Success(Map(parent));
+            catch (ValidationException ve)
+            {
+                return new BaseResponse<ParentDto>
+                {
+                    Status = false,
+                    Message = ve.Message
+                };
+            }
+            catch (NotFoundException nfe)
+            {
+                return new BaseResponse<ParentDto>
+                {
+                    Status = false,
+                    Message = nfe.Message
+                };
+            }
+            catch (DomainException de)
+            {
+                return new BaseResponse<ParentDto>
+                {
+                    Status = false,
+                    Message = de.Message
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<ParentDto>
+                {
+                    Status = false,
+                    Message = $"An unexpected error occurred: {ex.Message}"
+                };
+            }
         }
-
 
         public async Task<BaseResponse<ParentDto>> Update(string id, UpdateParentRequest model)
         {
-            var parent = await _parentRepo.Get(id)
-                ?? throw new NotFoundException("Parent not found");
-
-            parent.Children.Clear();
-
-            if (model.ChildrenIds != null)
+            try
             {
-                foreach (var childId in model.ChildrenIds)
+                var parent = await _parentRepo.Get(id)
+                    ?? throw new NotFoundException("Parent not found");
+
+                parent.Children.Clear();
+
+                if (model.ChildrenIds != null)
                 {
-                    var student = await _studentRepo.Get(childId)
-                        ?? throw new NotFoundException($"Student with id {childId} not found");
+                    foreach (var childId in model.ChildrenIds)
+                    {
+                        var student = await _studentRepo.Get(childId)
+                            ?? throw new NotFoundException($"Student with id {childId} not found");
 
-                    parent.Children.Add(student);
+                        parent.Children.Add(student);
+                    }
                 }
+
+                _parentRepo.Update(parent);
+                await _parentRepo.SaveAsync();
+
+                return Success(Map(parent));
             }
-
-            _parentRepo.Update(parent);
-            await _parentRepo.SaveAsync();
-
-            return Success(Map(parent));
+            catch (NotFoundException nfe)
+            {
+                return new BaseResponse<ParentDto>
+                {
+                    Status = false,
+                    Message = nfe.Message
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<ParentDto>
+                {
+                    Status = false,
+                    Message = $"An unexpected error occurred: {ex.Message}"
+                };
+            }
         }
 
         public async Task<BaseResponse<ParentDto>> GetById(string id)
         {
-            var parent = await _parentRepo.Get(id)
-                ?? throw new NotFoundException("Parent not found");
+            try
+            {
+                var parent = await _parentRepo.Get(id)
+                    ?? throw new NotFoundException("Parent not found");
 
-            return Success(Map(parent));
+                return Success(Map(parent));
+            }
+            catch (NotFoundException nfe)
+            {
+                return new BaseResponse<ParentDto>
+                {
+                    Status = false,
+                    Message = nfe.Message
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<ParentDto>
+                {
+                    Status = false,
+                    Message = $"An unexpected error occurred: {ex.Message}"
+                };
+            }
         }
 
         public async Task<BaseResponse<ICollection<ParentDto>>> GetAll(Paging paging)
         {
-            var parents = await _parentRepo.GetAll(paging);
-
-            return new BaseResponse<ICollection<ParentDto>>
+            try
             {
-                Data = parents.Select(Map).ToList(),
-                TotalCount = parents.Count,
-                Status = true,
-                PageNumber = paging?.PageNumber ?? 1,
-                PageSize = paging?.PageSize ?? parents.Count
-            };
+                var parents = await _parentRepo.GetAll(paging);
+
+                return new BaseResponse<ICollection<ParentDto>>
+                {
+                    Data = parents.Select(Map).ToList(),
+                    TotalCount = parents.Count,
+                    Status = true,
+                    PageNumber = paging?.PageNumber ?? 1,
+                    PageSize = paging?.PageSize ?? parents.Count
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<ICollection<ParentDto>>
+                {
+                    Status = false,
+                    Message = $"An unexpected error occurred: {ex.Message}"
+                };
+            }
         }
 
         private static ParentDto Map(Parent parent)

@@ -20,48 +20,78 @@ namespace HolookorBackend.Core.Application.Services
             _tutorRepo = tutorRepo;
         }
 
-        public async Task<BaseResponse<TutorReviewDto>> AddReviewAsync(string tutorId,string studentId, CreateTutorReviewRequest request)
+        public async Task<BaseResponse<TutorReviewDto>> AddReviewAsync(string tutorId, string studentId, CreateTutorReviewRequest request)
         {
-            var tutor = await _tutorRepo.Get(tutorId)
-                ?? throw new NotFoundException("Tutor not found");
-
-            var review = new TutorReview(
-                tutorId,
-                studentId,
-                request.Rating,
-                request.Comment
-            );
-
-            await _reviewRepo.CreateAsync(review);
-            await _reviewRepo.SaveAsync();
-
-            return new BaseResponse<TutorReviewDto>
+            try
             {
-                Status = true,
-                Message = "Review added successfully"
-            };
+                var tutor = await _tutorRepo.Get(tutorId)
+                    ?? throw new NotFoundException("Tutor not found");
+
+                var review = new TutorReview(
+                    tutorId,
+                    studentId,
+                    request.Rating,
+                    request.Comment
+                );
+
+                await _reviewRepo.CreateAsync(review);
+                await _reviewRepo.SaveAsync();
+
+                return new BaseResponse<TutorReviewDto>
+                {
+                    Status = true,
+                    Message = "Review added successfully"
+                };
+            }
+            catch (NotFoundException nfe)
+            {
+                return new BaseResponse<TutorReviewDto>
+                {
+                    Status = false,
+                    Message = nfe.Message
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<TutorReviewDto>
+                {
+                    Status = false,
+                    Message = $"An unexpected error occurred: {ex.Message}"
+                };
+            }
         }
 
         public async Task<BaseResponse<ICollection<TutorReviewDto>>> GetTutorReviewsAsync(string tutorId)
         {
-            var reviews = await _reviewRepo.GetByTutorIdAsync(tutorId);
-
-            var data = reviews.Select(r =>
-                new TutorReviewDto(
-                    r.Id,
-                    r.StudentId,
-                    r.Rating,
-                    r.Comment,
-                    r.CreatedOn
-                )
-            ).ToList();
-
-            return new BaseResponse<ICollection<TutorReviewDto>>
+            try
             {
-                Status = true,
-                Data = data,
-                TotalCount = data.Count
-            };
+                var reviews = await _reviewRepo.GetByTutorIdAsync(tutorId);
+
+                var data = reviews.Select(r =>
+                    new TutorReviewDto(
+                        r.Id,
+                        r.StudentId,
+                        r.Rating,
+                        r.Comment,
+                        r.CreatedOn
+                    )
+                ).ToList();
+
+                return new BaseResponse<ICollection<TutorReviewDto>>
+                {
+                    Status = true,
+                    Data = data,
+                    TotalCount = data.Count
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<ICollection<TutorReviewDto>>
+                {
+                    Status = false,
+                    Message = $"An unexpected error occurred: {ex.Message}"
+                };
+            }
         }
     }
 

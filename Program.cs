@@ -13,108 +13,110 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 
-internal class Program
-{
-    private static void Main(string[] args)
+var builder = WebApplication.CreateBuilder(args);
+
+
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+
+
+builder.Services.AddDbContext<HolookorSystem>(options =>
+    options.UseMySql(
+        builder.Configuration.GetConnectionString("HolookorBackendDB"),
+        ServerVersion.AutoDetect(
+            builder.Configuration.GetConnectionString("HolookorBackendDB")
+        )
+    )
+);
+
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+builder.WebHost.UseUrls($"http://*:{port}");
+
+
+builder.Services.AddHealthChecks();
+
+
+builder.Services.AddScoped<IJWTAuthenticationManager, JWTAuthenticationManager>();
+
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IStudentService, StudentService>();
+builder.Services.AddScoped<IParentService, ParentService>();
+builder.Services.AddScoped<ITutorService, TutorService>();
+builder.Services.AddScoped<IEmailVerificationService, EmailVerificationService>();
+builder.Services.AddScoped<ISessionService, SessionService>();
+builder.Services.AddScoped<ITutorReviewService, TutorReviewService>();
+
+builder.Services.AddScoped<IUserRepo, UserRepositories>();
+builder.Services.AddScoped<IStudentRepo, StudentRepositories>();
+builder.Services.AddScoped<IParentRepo, ParentRepositories>();
+builder.Services.AddScoped<ITutorRepo, TutorRepositories>();
+builder.Services.AddScoped<IUserProfileRepo, UserProfileRepositories>();
+builder.Services.AddScoped<IEmailVerificationRepo, EmailVerificationRepo>();
+builder.Services.AddScoped<IPriceingConfigRepo, PricingConfigRepositories>();
+builder.Services.AddScoped<ISessionRepo, SessionRepositories>();
+builder.Services.AddScoped<ITutorReviewRepo, TutorReviewRepositories>();
+
+
+builder.Services.AddHostedService<VerificationCleanupWorker>();
+
+builder.Services.AddTransient<IMailService, MailService>();
+
+
+builder.Services
+    .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
     {
-        var builder = WebApplication.CreateBuilder(args);
+        options.RequireHttpsMetadata = false;
+        options.SaveToken = true;
 
-
-        builder.Services.AddControllers();
-        builder.Services.AddEndpointsApiExplorer();
-
-
-        builder.Services.AddDbContext<HolookorSystem>(options =>
-            options.UseMySql(
-                builder.Configuration.GetConnectionString("HolookorBackendDB"),
-                ServerVersion.AutoDetect(
-                    builder.Configuration.GetConnectionString("HolookorBackendDB")
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(
+                    builder.Configuration["JWTSettings:SecretKey"]!
                 )
-            )
-        );
-
-        var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
-        builder.WebHost.UseUrls($"http://*:{port}");
-
-
-        builder.Services.AddHealthChecks();
-
-
-        builder.Services.AddScoped<IJWTAuthenticationManager, JWTAuthenticationManager>();
-
-        builder.Services.AddScoped<IUserService, UserService>();
-        builder.Services.AddScoped<IStudentService, StudentService>();
-        builder.Services.AddScoped<IParentService, ParentService>();
-        builder.Services.AddScoped<ITutorService, TutorService>();
-        builder.Services.AddScoped<IEmailVerificationService, EmailVerificationService>();
-
-        builder.Services.AddScoped<IUserRepo, UserRepositories>();
-        builder.Services.AddScoped<IStudentRepo, StudentRepositories>();
-        builder.Services.AddScoped<IParentRepo, ParentRepositories>();
-        builder.Services.AddScoped<ITutorRepo, TutorRepositories>();
-        builder.Services.AddScoped<IUserProfileRepo, UserProfileRepositories>();
-        builder.Services.AddScoped<IEmailVerificationRepo, EmailVerificationRepo>();
-
-        builder.Services.AddHostedService<VerificationCleanupWorker>();
-
-        builder.Services.AddTransient<IMailService, MailService>();
+            ),
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidIssuer = builder.Configuration["JWTSettings:Issuer"],
+            ValidAudience = builder.Configuration["JWTSettings:Audience"],
+            ClockSkew = TimeSpan.Zero
+        };
+    });
 
 
-        builder.Services
-            .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(options =>
-            {
-                options.RequireHttpsMetadata = false;
-                options.SaveToken = true;
-
-                options.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(
-                        Encoding.UTF8.GetBytes(
-                            builder.Configuration["JWTSettings:SecretKey"]!
-                        )
-                    ),
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidIssuer = builder.Configuration["JWTSettings:Issuer"],
-                    ValidAudience = builder.Configuration["JWTSettings:Audience"],
-                    ClockSkew = TimeSpan.Zero
-                };
-            });
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+        policy
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+    );
+});
 
 
-        builder.Services.AddCors(options =>
-        {
-            options.AddPolicy("AllowAll", policy =>
-                policy
-                    .AllowAnyOrigin()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-            );
-        });
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Holookor API",
+        Version = "v1"
+    });
 
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "Enter: Bearer {your JWT token}"
+    });
 
-        builder.Services.AddSwaggerGen(options =>
-        {
-            options.SwaggerDoc("v1", new OpenApiInfo
-            {
-                Title = "Holookor API",
-                Version = "v1"
-            });
-
-            options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-            {
-                Name = "Authorization",
-                Type = SecuritySchemeType.Http,
-                Scheme = "Bearer",
-                BearerFormat = "JWT",
-                In = ParameterLocation.Header,
-                Description = "Enter: Bearer {your JWT token}"
-            });
-
-            options.AddSecurityRequirement(new OpenApiSecurityRequirement
-            {
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
         {
             new OpenApiSecurityScheme
             {
@@ -126,40 +128,38 @@ internal class Program
             },
             Array.Empty<string>()
         }
-            });
-        });
-
-        
+    });
+});
 
 
-        var app = builder.Build();
 
-        using (var scope = app.Services.CreateScope())
-        {
-            var db = scope.ServiceProvider.GetRequiredService<HolookorSystem>();
-            db.Database.Migrate();
-        }
-        app.UseSwagger();
-        app.UseSwaggerUI(c =>
-        {
-            c.SwaggerEndpoint("/swagger/v1/swagger.json", "Holookor API v1");
-            c.RoutePrefix = string.Empty;
-        });
 
-        app.MapGet("/", () => Results.Ok("Holookor API is running"));
-        app.UseHealthChecks("/health");
-
-        app.UseCors("AllowAll");
-
-        app.UseHttpsRedirection();
-
-        app.UseAuthentication();
-        app.UseAuthorization();
-
-        app.UseMiddleware<GlobalExceptionMiddleware>();
-
-        app.MapControllers();
-
-        app.Run();
-    }
+var app = builder.Build();
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<HolookorSystem>();
+    db.Database.Migrate();
 }
+
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Holookor API v1");
+    c.RoutePrefix = string.Empty;
+});
+
+app.MapGet("/", () => Results.Ok("Holookor API is running"));
+app.UseHealthChecks("/health");
+
+app.UseCors("AllowAll");
+
+app.UseHttpsRedirection();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
+app.UseMiddleware<GlobalExceptionMiddleware>();
+
+app.MapControllers();
+
+app.Run();

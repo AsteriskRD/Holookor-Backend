@@ -18,36 +18,64 @@ namespace HolookorBackend.Infrastructure.Repositories
 
         public async Task<Tutor?> Get(string id)
         {
-            return await _context.Tutors
-                 .Include(x => x.Profile)
-                .SingleOrDefaultAsync(x => x.Id == id);
+            try
+            {
+                return await _context.Tutors
+                     .Include(x => x.Profile)
+                    .SingleOrDefaultAsync(x => x.Id == id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error occurred while retrieving Tutor by id: {id}.", ex);
+            }
         }
 
         public async Task<ICollection<Tutor>> GetAll(Paging paging)
         {
-            return await _context.Tutors
-                 .Include(x => x.Profile)
-                 .Skip((paging.PageNumber - 1) * paging.PageSize)
-                 .Take(paging.PageSize)
-                 .ToListAsync();
+            try
+            {
+                return await _context.Tutors
+                     .Include(x => x.Profile)
+                     .Skip((paging.PageNumber - 1) * paging.PageSize)
+                     .Take(paging.PageSize)
+                     .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error occurred while retrieving Tutors with paging.", ex);
+            }
         }
 
         public async Task<ICollection<Tutor>> GetAllAsync(Expression<Func<Tutor, bool>> predicate, Paging paging)
         {
-            return await _context.Tutors
-             .Include(t => t.Profile)
-             .Include(t => t.Reviews)
-             .Where(predicate)
-             .Skip((paging.PageNumber - 1) * paging.PageSize)
-             .Take(paging.PageSize)
-             .ToListAsync();
+            try
+            {
+                return await _context.Tutors
+                 .Include(t => t.Profile)
+                 .Include(t => t.Reviews)
+                 .Where(predicate)
+                 .Skip((paging.PageNumber - 1) * paging.PageSize)
+                 .Take(paging.PageSize)
+                 .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error occurred while retrieving Tutors by predicate with paging.", ex);
+            }
         }
 
         public async Task<Tutor?> GetAsync(Expression<Func<Tutor, bool>> predicate)
         {
-            return await _context.Tutors
-                .Include(x => x.Profile)
-                .SingleOrDefaultAsync(predicate);
+            try
+            {
+                return await _context.Tutors
+                    .Include(x => x.Profile)
+                    .SingleOrDefaultAsync(predicate);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error occurred while retrieving Tutor by predicate.", ex);
+            }
         }
 
         public IQueryable<Tutor> Query(Expression<Func<Tutor, bool>> predicate)

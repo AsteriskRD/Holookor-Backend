@@ -1,4 +1,5 @@
-﻿using HolookorBackend.Core.Domain.Enums;
+﻿using HolookorBackend.Core.Application.Exceptions.HolookorBackend.Core.Application.Exceptions;
+using HolookorBackend.Core.Domain.Enums;
 using TimeZoneConverter;
 
 
@@ -11,7 +12,10 @@ namespace HolookorBackend.Core.Domain.Entities
         public Gender Gender { get; private set; }
         public DateOnly DateOfBirth { get; private set; }
         public Location Location { get; private set; } = default!;
-        public ICollection<string> Availability { get; private set; } = new List<string>();
+
+        private readonly List<TutorAvailability> _availabilities = new();
+        public ICollection<TutorAvailability> Availabilities => _availabilities;
+
         public int YearsOfExperience { get; private set; } = default!;
         public string? ProfilePictureURL { get; private set; }
         public string TimeZoneId { get; private set; } = default!;
@@ -77,10 +81,21 @@ namespace HolookorBackend.Core.Domain.Entities
                 Subjects.Add(subject);
         }
 
-        public void AddAvailability(string availability)
+        public void AddAvailability(DayOfWeek day, TimeSpan startTime, TimeSpan endTime)
         {
-            if (!string.IsNullOrWhiteSpace(availability) && !Availability.Contains(availability))
-                Availability.Add(availability);
+            if (startTime >= endTime)
+                throw new DomainException("Invalid availability range");
+
+            bool overlaps = _availabilities.Any(a =>
+                a.DayOfWeek == day &&
+                startTime < a.EndTime &&
+                endTime > a.StartTime
+            );
+
+            if (overlaps)
+                throw new DomainException("Availability overlaps with existing one");
+
+            _availabilities.Add(new TutorAvailability(day, startTime, endTime));
         }
 
         public void SetAvailability(bool isAvailable)

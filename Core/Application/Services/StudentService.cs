@@ -21,85 +21,196 @@ namespace HolookorBackend.Core.Application.Services
 
         public async Task<BaseResponse<StudentDto>> Create(CreateStudentRequest model, string userId)
         {
-            if (model.DateOfBirth >= DateOnly.FromDateTime(DateTime.UtcNow))
-                throw new ValidationException("Invalid date of birth");
-
-            var profile = await _profileRepo.Get(userId)
-                ?? throw new NotFoundException("User profile not found");
-
-            if (!profile.IsEmailVerified)
-                throw new DomainException("Email must be verified before creating a student");
-
-            var student = new Student(
-                model.SchoolLevel,
-                model.DateOfBirth,
-                model.Gender,
-                model.WeeklyAvailability,
-                model.Location,
-                model.TimeZoneId,
-                model.PreferredClassTime,
-                model.SubjectOfInterest
-            );
-
-            student.AssignProfile(profile.Id);
-            if (profile.Role == "Parent") 
+            try
             {
-                student.AssignParent(profile.Id); 
+                if (model.DateOfBirth >= DateOnly.FromDateTime(DateTime.UtcNow))
+                    throw new ValidationException("Invalid date of birth");
+
+                var profile = await _profileRepo.Get(userId)
+                    ?? throw new NotFoundException("User profile not found");
+
+                if (!profile.IsEmailVerified)
+                    throw new DomainException("Email must be verified before creating a student");
+
+                var student = new Student(
+                    model.SchoolLevel,
+                    model.DateOfBirth,
+                    model.Gender,
+                    model.WeeklyAvailability,
+                    model.Location,
+                    model.TimeZoneId,
+                    model.PreferredClassTime,
+                    model.SubjectOfInterest
+                );
+
+                student.AssignProfile(profile.Id);
+                if (profile.Role == "Parent")
+                {
+                    student.AssignParent(profile.Id);
+                }
+
+                await _studentRepo.CreateAsync(student);
+                await _studentRepo.SaveAsync();
+
+                return Success(Map(student));
             }
-
-            await _studentRepo.CreateAsync(student);
-            await _studentRepo.SaveAsync();
-
-            return Success(Map(student));
+            catch (ValidationException ve)
+            {
+                return new BaseResponse<StudentDto>
+                {
+                    Status = false,
+                    Message = ve.Message
+                };
+            }
+            catch (NotFoundException nfe)
+            {
+                return new BaseResponse<StudentDto>
+                {
+                    Status = false,
+                    Message = nfe.Message
+                };
+            }
+            catch (DomainException de)
+            {
+                return new BaseResponse<StudentDto>
+                {
+                    Status = false,
+                    Message = de.Message
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<StudentDto>
+                {
+                    Status = false,
+                    Message = $"An unexpected error occurred: {ex.Message}"
+                };
+            }
         }
 
         public async Task<BaseResponse<StudentDto>> Update(string id, UpdateStudentRequest model)
         {
-            var student = await _studentRepo.Get(id)
-                ?? throw new NotFoundException("Student not found");
+            try
+            {
+                var student = await _studentRepo.Get(id)
+                    ?? throw new NotFoundException("Student not found");
 
-            if (model.Location != null)
-                student.UpdateLocation(model.Location);
+                if (model.Location != null)
+                    student.UpdateLocation(model.Location);
 
-            if (model.PreferredClassTime.HasValue)
-                student.UpdatePreferredClassTime(model.PreferredClassTime.Value);
+                if (model.PreferredClassTime.HasValue)
+                    student.UpdatePreferredClassTime(model.PreferredClassTime.Value);
 
-            _studentRepo.Update(student);
-            await _studentRepo.SaveAsync();
+                _studentRepo.Update(student);
+                await _studentRepo.SaveAsync();
 
-            return Success(Map(student));
+                return Success(Map(student));
+            }
+            catch (NotFoundException nfe)
+            {
+                return new BaseResponse<StudentDto>
+                {
+                    Status = false,
+                    Message = nfe.Message
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<StudentDto>
+                {
+                    Status = false,
+                    Message = $"An unexpected error occurred: {ex.Message}"
+                };
+            }
         }
 
         public async Task<BaseResponse<StudentDto>> GetById(string id)
         {
-            var student = await _studentRepo.Get(id)
-                ?? throw new NotFoundException("Student not found");
+            try
+            {
+                var student = await _studentRepo.Get(id)
+                    ?? throw new NotFoundException("Student not found");
 
-            return Success(Map(student));
+                return Success(Map(student));
+            }
+            catch (NotFoundException nfe)
+            {
+                return new BaseResponse<StudentDto>
+                {
+                    Status = false,
+                    Message = nfe.Message
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<StudentDto>
+                {
+                    Status = false,
+                    Message = $"An unexpected error occurred: {ex.Message}"
+                };
+            }
         }
 
         public async Task<BaseResponse<ICollection<StudentDto>>> GetAll(Paging paging)
         {
-            var students = await _studentRepo.GetAll(paging);
-            return new BaseResponse<ICollection<StudentDto>>
+            try
             {
-                Data = students.Select(Map).ToList(),
-                TotalCount = students.Count,
-                Status = true,
-                PageNumber = paging?.PageNumber ?? 1,
-                PageSize = paging?.PageSize ?? students.Count
-            };
+                var students = await _studentRepo.GetAll(paging);
+                return new BaseResponse<ICollection<StudentDto>>
+                {
+                    Data = students.Select(Map).ToList(),
+                    TotalCount = students.Count,
+                    Status = true,
+                    PageNumber = paging?.PageNumber ?? 1,
+                    PageSize = paging?.PageSize ?? students.Count
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<ICollection<StudentDto>>
+                {
+                    Status = false,
+                    Message = $"An unexpected error occurred: {ex.Message}"
+                };
+            }
         }
 
         public async Task<BaseResponse<StudentDto>> GetByChildID(string childId)
         {
-            if (string.IsNullOrWhiteSpace(childId))
-                throw new ValidationException("ChildID is required");
+            try
+            {
+                if (string.IsNullOrWhiteSpace(childId))
+                    throw new ValidationException("ChildID is required");
 
-            var student = await _studentRepo.GetAsync(s => s.ChildID == childId && !s.IsDeleted)
-                ?? throw new NotFoundException("Student not found");
+                var student = await _studentRepo.GetAsync(s => s.ChildID == childId && !s.IsDeleted)
+                    ?? throw new NotFoundException("Student not found");
 
-            return Success(Map(student));
+                return Success(Map(student));
+            }
+            catch (ValidationException ve)
+            {
+                return new BaseResponse<StudentDto>
+                {
+                    Status = false,
+                    Message = ve.Message
+                };
+            }
+            catch (NotFoundException nfe)
+            {
+                return new BaseResponse<StudentDto>
+                {
+                    Status = false,
+                    Message = nfe.Message
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<StudentDto>
+                {
+                    Status = false,
+                    Message = $"An unexpected error occurred: {ex.Message}"
+                };
+            }
         }
 
         private static StudentDto Map(Student s)

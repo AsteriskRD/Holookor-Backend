@@ -10,7 +10,7 @@ namespace HolookorBackend.Core.Application.DTOs
         Location Location,
         IReadOnlyCollection<string> Qualifications,
         IReadOnlyCollection<string> Subjects,
-        IReadOnlyCollection<string> Availability,
+        IReadOnlyCollection<AvailabilityDto> Availability,
         int YearsOfExperience,
         string CredentialsDocument,
         string GovernmentID,
@@ -34,7 +34,7 @@ namespace HolookorBackend.Core.Application.DTOs
         string TimeZoneId,
         string[] Qualifications,
         string[] Subjects,
-        string[] Availability,
+        IReadOnlyCollection<AvailabilityDto> Availability,
         string? ProfilePictureURL
     );
 
@@ -50,25 +50,24 @@ namespace HolookorBackend.Core.Application.DTOs
         string? TimeZoneId = null,
         string[]? Qualifications = null,
         string[]? Subjects = null,
-        string[]? Availability = null,
+        IReadOnlyCollection<AvailabilityDto>? Availability = null,
         string? ProfilePictureURL = null
     );
 
     public record TutorSearchDto(
-    string TutorId,
-    string FullName,
-    Gender Gender,
-    decimal HourlyRate,
-    bool IsVerified,
-    bool IsAvailable,
-    double AverageRating,
-    int ReviewCount,
-    string? ProfilePictureUrl,
-    IReadOnlyList<string> Subjects
+        string TutorId,
+        string FullName,
+        Gender Gender,
+        decimal HourlyRate,
+        bool IsVerified,
+        bool IsAvailable,
+        double AverageRating,
+        int ReviewCount,
+        string? ProfilePictureUrl,
+        IReadOnlyList<string> Subjects
     );
 
 
-    //tutor search 
     public class TutorSearchRequestDto
     {
         public string? Subject { get; set; }
@@ -94,6 +93,9 @@ namespace HolookorBackend.Core.Application.DTOs
     IReadOnlyCollection<string> Subjects
     );
 
-
+    public record AvailabilityDto(
+        DayOfWeek DayOfWeek,
+        TimeSpan StartTime,
+        TimeSpan EndTime
+    );
 }
-

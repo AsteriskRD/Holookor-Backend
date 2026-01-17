@@ -18,25 +18,48 @@ namespace HolookorBackend.Infrastructure.Repositories
 
         public async Task<User?> Get(string id)
         {
-            return await _context.Users
-                  .Include(x => x.UserProfile)
-               .SingleOrDefaultAsync(x => x.Id == id);
+            try
+            {
+                return await _context.Users
+                    .Include(x => x.UserProfile)
+                    .SingleOrDefaultAsync(x => x.Id == id);
+            }
+            catch (Exception ex)
+            {
+               
+                return null;
+            }
         }
 
         public async Task<ICollection<User>> GetAll(Paging paging)
         {
-            return await _context.Users
-                .Include(x => x.UserProfile)
-                .Skip((paging.PageNumber - 1) * paging.PageSize)
-                .Take(paging.PageSize)
-                .ToListAsync();
+            try
+            {
+                return await _context.Users
+                    .Include(x => x.UserProfile)
+                    .Skip((paging.PageNumber - 1) * paging.PageSize)
+                    .Take(paging.PageSize)
+                    .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                
+                return new List<User>();
+            }
         }
 
         public async Task<User?> GetAsync(Expression<Func<User, bool>> predicate)
         {
-            return await _context.Users
-                  .Include(x => x.UserProfile)
-                .SingleOrDefaultAsync(predicate);
+            try
+            {
+                return await _context.Users
+                    .Include(x => x.UserProfile)
+                    .SingleOrDefaultAsync(predicate);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
     }
 }

@@ -37,238 +37,304 @@ namespace HolookorBackend.Core.Application.Services
 
         public async Task<BaseResponse<UserDto>> Register(RegisterRequestModel model)
         {
-            var existingUser = await _userRepo.GetAsync(u => u.Email == model.Email);
-            if (existingUser != null)
+            try
+            {
+                var existingUser = await _userRepo.GetAsync(u => u.Email == model.Email);
+                if (existingUser != null)
+                {
+                    return new BaseResponse<UserDto>
+                    {
+                        Status = false,
+                        Message = "Email already registered"
+                    };
+                }
+
+                var hashedPassword = BCrypt.Net.BCrypt.HashPassword(model.Password);
+
+                var userProfile = new UserProfile(
+                    model.FirstName,
+                    model.LastName,
+                    model.Role,
+                    model.PhoneNumber
+                );
+
+                var user = new User
+                {
+                    Email = model.Email,
+                    PassWord = hashedPassword,
+                    UserProfileId = userProfile.Id
+                };
+
+                await _userProfileRepo.CreateAsync(userProfile);
+                await _userRepo.CreateAsync(user);
+                await _userRepo.SaveAsync();
+
+                return new BaseResponse<UserDto>
+                {
+                    Status = true,
+                    Message = "Registration successful",
+                    Data = new UserDto(user.Id)
+                    {
+                        Email = user.Email,
+                        FirstName = userProfile.FirstName,
+                        UserProfileId = userProfile.Id
+                    }
+                };
+            }
+            catch (Exception ex)
             {
                 return new BaseResponse<UserDto>
                 {
                     Status = false,
-                    Message = "Email already registered"
+                    Message = $"An error occurred during registration: {ex.Message}"
                 };
             }
-
-            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(model.Password);
-
-            var userProfile = new UserProfile(
-                model.FirstName,
-                model.LastName,
-                model.Role,
-                model.PhoneNumber
-            );
-
-            var user = new User
-            {
-                Email = model.Email,
-                PassWord = hashedPassword,
-                UserProfileId = userProfile.Id
-            };
-
-            await _userProfileRepo.CreateAsync(userProfile);
-            await _userRepo.CreateAsync(user);
-            await _userRepo.SaveAsync();
-
-            return new BaseResponse<UserDto>
-            {
-                Status = true,
-                Message = "Registration successful",
-                Data = new UserDto(user.Id)
-                {
-                    Email = user.Email,
-                    FirstName = userProfile.FirstName,
-                    UserProfileId = userProfile.Id
-                }
-            };
         }
 
         public async Task<BaseResponse<LoginResponseModel>> Login(LoginRequestModel model)
         {
-            var user = await _userRepo.GetAsync(u => u.Email == model.Email);
-            if (user == null || !BCrypt.Net.BCrypt.Verify(model.Password, user.PassWord))
+            try
             {
-                return new BaseResponse<LoginResponseModel>
+                var user = await _userRepo.GetAsync(u => u.Email == model.Email);
+                if (user == null || !BCrypt.Net.BCrypt.Verify(model.Password, user.PassWord))
                 {
-                    Status = false,
-                    Message = "Invalid email or password"
-                };
-            }
-
-            var token = _jwtAuthManager.GenerateToken(new UserDto(user.Id)
-            {
-                Email = user.Email,
-               FirstName = user.UserProfile.FirstName,
-               UserProfileId = user.UserProfileId
-
-            });
-
-            return new BaseResponse<LoginResponseModel>
-            {
-                Status = true,
-                Message = "Login successful",
-                Data = new LoginResponseModel(
-                    user.Id,
-                    user.Email,
-                    user.UserProfile.FirstName,
-                    user.UserProfileId
-                )
-                {
-                    Token = token
+                    return new BaseResponse<LoginResponseModel>
+                    {
+                        Status = false,
+                        Message = "Invalid email or password"
+                    };
                 }
-            };
-        }
 
-        public async Task<BaseResponse<UserDto>> GetById(string id)
-        {
-            var user = await _userRepo.Get(id);
-            if (user == null)
-            {
-                return new BaseResponse<UserDto>
-                {
-                    Status = false,
-                    Message = "User not found"
-                };
-            }
-
-            return new BaseResponse<UserDto>
-            {
-                Status = true,
-                Data = new UserDto(user.Id)
+                var token = _jwtAuthManager.GenerateToken(new UserDto(user.Id)
                 {
                     Email = user.Email,
                     FirstName = user.UserProfile.FirstName,
                     UserProfileId = user.UserProfileId
+
+                });
+
+                return new BaseResponse<LoginResponseModel>
+                {
+                    Status = true,
+                    Message = "Login successful",
+                    Data = new LoginResponseModel(
+                        user.Id,
+                        user.Email,
+                        user.UserProfile.FirstName,
+                        user.UserProfileId
+                    )
+                    {
+                        Token = token
+                    }
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<LoginResponseModel>
+                {
+                    Status = false,
+                    Message = $"An error occurred during login: {ex.Message}"
+                };
+            }
+        }
+
+        public async Task<BaseResponse<UserDto>> GetById(string id)
+        {
+            try
+            {
+                var user = await _userRepo.Get(id);
+                if (user == null)
+                {
+                    return new BaseResponse<UserDto>
+                    {
+                        Status = false,
+                        Message = "User not found"
+                    };
                 }
-            };
+
+                return new BaseResponse<UserDto>
+                {
+                    Status = true,
+                    Data = new UserDto(user.Id)
+                    {
+                        Email = user.Email,
+                        FirstName = user.UserProfile.FirstName,
+                        UserProfileId = user.UserProfileId
+                    }
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<UserDto>
+                {
+                    Status = false,
+                    Message = $"An error occurred while fetching the user: {ex.Message}"
+                };
+            }
         }
 
         public async Task<BaseResponse<ICollection<UserDto>>> GetAll(Paging paging)
         {
-            var users = await _userRepo.GetAll(paging);
-
-            var result = users.Select(u => new UserDto(u.Id)
+            try
             {
-                Email = u.Email,
-                FirstName = u.UserProfile.FirstName,
-                UserProfileId = u.UserProfileId
-            }).ToList();
+                var users = await _userRepo.GetAll(paging);
 
-            return new BaseResponse<ICollection<UserDto>>
+                var result = users.Select(u => new UserDto(u.Id)
+                {
+                    Email = u.Email,
+                    FirstName = u.UserProfile.FirstName,
+                    UserProfileId = u.UserProfileId
+                }).ToList();
+
+                return new BaseResponse<ICollection<UserDto>>
+                {
+                    Status = true,
+                    Data = result
+                };
+            }
+            catch (Exception ex)
             {
-                Status = true,
-                Data = result
-            };
+                return new BaseResponse<ICollection<UserDto>>
+                {
+                    Status = false,
+                    Message = $"An error occurred while retrieving users: {ex.Message}"
+                };
+            }
         }
 
         public async Task<BaseResponse<UserDto>> Update(string id, UpdateUserRequestModel model)
         {
-            var user = await _userRepo.Get(id);
-            if (user == null)
+            try
             {
-                return new BaseResponse<UserDto>
+                var user = await _userRepo.Get(id);
+                if (user == null)
                 {
-                    Status = false,
-                    Message = "User not found"
-                };
-            }
-
-            if (string.IsNullOrWhiteSpace(model.CurrentPassword) ||
-                string.IsNullOrWhiteSpace(model.NewPassword))
-            {
-                return new BaseResponse<UserDto>
-                {
-                    Status = false,
-                    Message = "Current and new passwords are required"
-                };
-            }
-
-            if (!BCrypt.Net.BCrypt.Verify(model.CurrentPassword, user.PassWord))
-            {
-                return new BaseResponse<UserDto>
-                {
-                    Status = false,
-                    Message = "Current password is incorrect"
-                };
-            }
-
-            if (BCrypt.Net.BCrypt.Verify(model.NewPassword, user.PassWord))
-            {
-                return new BaseResponse<UserDto>
-                {
-                    Status = false,
-                    Message = "New password cannot be same as old password"
-                };
-            }
-
-            user.PassWord = BCrypt.Net.BCrypt.HashPassword(model.NewPassword);
-            _userRepo.Update(user);
-            await _userRepo.SaveAsync();
-
-            return new BaseResponse<UserDto>
-            {
-                Status = true,
-                Message = "Password updated successfully",
-                Data = new UserDto(user.Id)
-                {
-                    Email = user.Email
+                    return new BaseResponse<UserDto>
+                    {
+                        Status = false,
+                        Message = "User not found"
+                    };
                 }
-            };
-        }
-    public async Task<BaseResponse<ProfileDto>> GetByProfile(string userProfileId)
-    {
-        var profile = await _userProfileRepo.Get(userProfileId);
-        if (profile == null)
-        {
-            return new BaseResponse<ProfileDto>
+
+                if (string.IsNullOrWhiteSpace(model.CurrentPassword) ||
+                    string.IsNullOrWhiteSpace(model.NewPassword))
+                {
+                    return new BaseResponse<UserDto>
+                    {
+                        Status = false,
+                        Message = "Current and new passwords are required"
+                    };
+                }
+
+                if (!BCrypt.Net.BCrypt.Verify(model.CurrentPassword, user.PassWord))
+                {
+                    return new BaseResponse<UserDto>
+                    {
+                        Status = false,
+                        Message = "Current password is incorrect"
+                    };
+                }
+
+                if (BCrypt.Net.BCrypt.Verify(model.NewPassword, user.PassWord))
+                {
+                    return new BaseResponse<UserDto>
+                    {
+                        Status = false,
+                        Message = "New password cannot be same as old password"
+                    };
+                }
+
+                user.PassWord = BCrypt.Net.BCrypt.HashPassword(model.NewPassword);
+                _userRepo.Update(user);
+                await _userRepo.SaveAsync();
+
+                return new BaseResponse<UserDto>
+                {
+                    Status = true,
+                    Message = "Password updated successfully",
+                    Data = new UserDto(user.Id)
+                    {
+                        Email = user.Email
+                    }
+                };
+            }
+            catch (Exception ex)
             {
-                Status = false,
-                Message = "Profile not found"
-            };
+                return new BaseResponse<UserDto>
+                {
+                    Status = false,
+                    Message = $"An error occurred while updating the user: {ex.Message}"
+                };
+            }
         }
 
-        StudentDto? studentDto = null;
-        TutorDto? tutorDto = null;
-        ParentDto? parentDto = null;
-
-        var student = await _studentRepo.GetAsync(s => s.UserProfileId == profile.Id);
-        if (student != null)
+        public async Task<BaseResponse<ProfileDto>> GetByProfile(string userProfileId)
         {
-            studentDto = StudentMapper.Map(student);
+            try
+            {
+                var profile = await _userProfileRepo.Get(userProfileId);
+                if (profile == null)
+                {
+                    return new BaseResponse<ProfileDto>
+                    {
+                        Status = false,
+                        Message = "Profile not found"
+                    };
+                }
+
+                StudentDto? studentDto = null;
+                TutorDto? tutorDto = null;
+                ParentDto? parentDto = null;
+
+                var student = await _studentRepo.GetAsync(s => s.UserProfileId == profile.Id);
+                if (student != null)
+                {
+                    studentDto = StudentMapper.Map(student);
+                }
+
+                var tutor = await _tutorRepo.GetAsync(t => t.UserProfileId == profile.Id);
+                if (tutor != null)
+                {
+                    tutorDto = TutorMapper.Map(tutor);
+                }
+
+                var parent = await _parentRepo.GetAsync(p => p.UserProfileId == profile.Id);
+                if (parent != null)
+                {
+                    var children = await _studentRepo.GetAllAsync(
+                        s => s.ParentId == parent.Id
+                    );
+
+                    parentDto = ParentMapper.Map(parent, children);
+                }
+
+                var dto = new ProfileDto(
+                    profile.Id,
+                    profile.FirstName,
+                    profile.LastName,
+                    profile.PhoneNumber,
+                    profile.Users!.Email,
+                    profile.Role,
+                    studentDto,
+                    tutorDto,
+                    parentDto
+                );
+
+                return new BaseResponse<ProfileDto>
+                {
+                    Status = true,
+                    Data = dto
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<ProfileDto>
+                {
+                    Status = false,
+                    Message = $"An error occurred while retrieving the profile: {ex.Message}"
+                };
+            }
         }
-
-        var tutor = await _tutorRepo.GetAsync(t => t.UserProfileId == profile.Id);
-        if (tutor != null)
-        {
-            tutorDto = TutorMapper.Map(tutor);
-        }
-
-        var parent = await _parentRepo.GetAsync(p => p.UserProfileId == profile.Id);
-        if (parent != null)
-        {
-            var children = await _studentRepo.GetAllAsync(
-                s => s.ParentId == parent.Id
-            );
-
-            parentDto = ParentMapper.Map(parent, children);
-        }
-
-        var dto = new ProfileDto(
-            profile.Id,
-            profile.FirstName,
-            profile.LastName,
-            profile.PhoneNumber,
-            profile.Users!.Email,
-            profile.Role,
-            studentDto,
-            tutorDto,
-            parentDto
-        );
-
-        return new BaseResponse<ProfileDto>
-        {
-            Status = true,
-            Data = dto
-        };
-    }
-
 
     public Task<BaseResponse<UserDto>> ForgetPassword(string id, ForgetPasswordRequestModel model)
         {

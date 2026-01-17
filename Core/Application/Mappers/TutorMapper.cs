@@ -14,7 +14,11 @@ namespace HolookorBackend.Core.Application.Mappers
                 t.Location,
                 t.Qualifications.ToList(),
                 t.Subjects.ToList(),
-                t.Availability.ToList(),
+                 t.Availabilities.Select(a => new AvailabilityDto(
+                     a.DayOfWeek,
+                     a.StartTime,
+                     a.EndTime
+                    )).ToList(),
                 t.YearsOfExperience,
                 t.CredentialsDocument,
                 t.GovernmentID,

@@ -17,6 +17,10 @@ namespace HolookorBackend.Infrastructure.Context
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<TutorReview> TutorReviews { get; set; }
         public DbSet<EmailVerification> EmailVerifications { get; set; }
+        public DbSet<Session> Sessions { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+        public DbSet<PricingConfig> PricingConfigs { get; set; }
+        public DbSet<SessionBillingInfo> SessionBillingInfos { get; set; }
 
 
 
@@ -37,6 +41,14 @@ namespace HolookorBackend.Infrastructure.Context
                 .HasKey(a => a.Id);
             modelBuilder.Entity<EmailVerification>()
                 .HasKey(a => a.Id);
+            modelBuilder.Entity<Session>()
+                .HasKey(a => a.Id);
+            modelBuilder.Entity<Payment>()
+                .HasKey(a => a.Id);
+            modelBuilder.Entity<PricingConfig>()
+                .HasKey(a => a.Id);
+            modelBuilder.Entity<SessionBillingInfo>()
+                .HasKey(a => a.Email); 
         }
     }
 }

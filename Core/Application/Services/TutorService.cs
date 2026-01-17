@@ -20,150 +20,224 @@ namespace HolookorBackend.Core.Application.Services
         {
             _tutorRepo = tutorRepo;
             _userRepo = userRepo;
-
         }
 
         public async Task<BaseResponse<TutorDto>> Register(CreateTutorRequest model, string userProfileId)
         {
-            if (model.HourlyRate <= 0)
-                throw new ValidationException("Hourly rate must be greater than zero");
+            try
+            {
+                if (model.HourlyRate <= 0)
+                    throw new ValidationException("Hourly rate must be greater than zero");
 
-            var profile = await _userRepo.Get(userProfileId)
-                ?? throw new NotFoundException("User profile not found");
+                var profile = await _userRepo.Get(userProfileId)
+                    ?? throw new NotFoundException("User profile not found");
 
-            if (!profile.IsEmailVerified)
-                throw new DomainException("Email must be verified before creating a tutor");
+                if (!profile.IsEmailVerified)
+                    throw new DomainException("Email must be verified before creating a tutor");
 
-            var tutor = new Tutor(
-                model.Gender,
-                model.DateOfBirth,
-                model.Location,
-                model.YearsOfExperience,
-                model.CredentialsDocument,
-                model.GovernmentID,
-                model.HourlyRate,
-                model.Bio,
-                model.TimeZoneId
-            );
+                var tutor = new Tutor(
+                    model.Gender,
+                    model.DateOfBirth,
+                    model.Location,
+                    model.YearsOfExperience,
+                    model.CredentialsDocument,
+                    model.GovernmentID,
+                    model.HourlyRate,
+                    model.Bio,
+                    model.TimeZoneId
+                );
 
-            foreach (var q in model.Qualifications)
-                tutor.AddQualification(q);
+                foreach (var q in model.Qualifications)
+                    tutor.AddQualification(q);
 
-            foreach (var s in model.Subjects)
-                tutor.AddSubject(s);
+                foreach (var s in model.Subjects)
+                    tutor.AddSubject(s);
 
-            foreach (var a in model.Availability)
-                tutor.AddAvailability(a);
+                foreach (var a in model.Availability)
+                    tutor.AddAvailability(a.DayOfWeek, a.StartTime, a.EndTime);
 
-            tutor.AssignProfile(profile.Id);
+                tutor.AssignProfile(profile.Id);
 
-            await _tutorRepo.CreateAsync(tutor);
-            await _tutorRepo.SaveAsync();
+                await _tutorRepo.CreateAsync(tutor);
+                await _tutorRepo.SaveAsync();
 
-            return Success(Map(tutor));
+                return Success(Map(tutor));
+            }
+            catch (ValidationException ve)
+            {
+                return new BaseResponse<TutorDto>
+                {
+                    Status = false,
+                    Message = ve.Message
+                };
+            }
+            catch (NotFoundException nfe)
+            {
+                return new BaseResponse<TutorDto>
+                {
+                    Status = false,
+                    Message = nfe.Message
+                };
+            }
+            catch (DomainException de)
+            {
+                return new BaseResponse<TutorDto>
+                {
+                    Status = false,
+                    Message = de.Message
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<TutorDto>
+                {
+                    Status = false,
+                    Message = $"An unexpected error occurred: {ex.Message}"
+                };
+            }
         }
 
 
         public async Task<BaseResponse<TutorDto>> GetById(string id)
         {
-            var tutor = await _tutorRepo.Get(id)
-                ?? throw new NotFoundException("Tutor not found");
+            try
+            {
+                var tutor = await _tutorRepo.Get(id)
+                    ?? throw new NotFoundException("Tutor not found");
 
-            return Success(Map(tutor));
+                return Success(Map(tutor));
+            }
+            catch (NotFoundException nfe)
+            {
+                return new BaseResponse<TutorDto>
+                {
+                    Status = false,
+                    Message = nfe.Message
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<TutorDto>
+                {
+                    Status = false,
+                    Message = $"An unexpected error occurred: {ex.Message}"
+                };
+            }
         }
 
         public async Task<BaseResponse<ICollection<TutorDto>>> GetAll(Paging paging)
         {
-            var tutors = await _tutorRepo.GetAll(paging);
-            return new BaseResponse<ICollection<TutorDto>>
+            try
             {
-                Data = tutors.Select(Map).ToList(),
-                TotalCount = tutors.Count,
-                Status = true,
-                PageNumber = paging?.PageNumber ?? 1,
-                PageSize = paging?.PageSize ?? tutors.Count
-            };
+                var tutors = await _tutorRepo.GetAll(paging);
+                return new BaseResponse<ICollection<TutorDto>>
+                {
+                    Data = tutors.Select(Map).ToList(),
+                    TotalCount = tutors.Count,
+                    Status = true,
+                    PageNumber = paging?.PageNumber ?? 1,
+                    PageSize = paging?.PageSize ?? tutors.Count
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<ICollection<TutorDto>>
+                {
+                    Status = false,
+                    Message = $"An unexpected error occurred: {ex.Message}"
+                };
+            }
         }
 
         public async Task<BaseResponse<ICollection<TutorSearchResponseDto>>> SearchAsync(TutorSearchRequestDto filter, Paging paging)
         {
-            var predicate = PredicateBuilder.True<Tutor>();
-
-            predicate = predicate.And(t => t.IsVerified && t.IsAvailableStatus);
-
-            if (!string.IsNullOrWhiteSpace(filter.Subject))
-                predicate = predicate.And(t => t.Subjects.Contains(filter.Subject));
-
-            if (filter.Gender.HasValue)
-                predicate = predicate.And(t => t.Gender == filter.Gender);
-
-            if (filter.MinRate.HasValue)
-                predicate = predicate.And(t => t.HourlyRate >= filter.MinRate);
-
-            if (filter.MaxRate.HasValue)
-                predicate = predicate.And(t => t.HourlyRate <= filter.MaxRate);
-
-            if (filter.MinRating.HasValue)
-                predicate = predicate.And(t =>
-                    t.Reviews.Any() &&
-                    t.Reviews.Average(r => r.Rating) >= filter.MinRating);
-
-            var query = _tutorRepo.Query(predicate);
-
-            
-            query = filter.SortBy switch
+            try
             {
-                TutorSortOption.PriceLowToHigh =>
-                    query.OrderBy(t => t.HourlyRate),
+                var predicate = PredicateBuilder.True<Tutor>();
 
-                TutorSortOption.PriceHighToLow =>
-                    query.OrderByDescending(t => t.HourlyRate),
+                predicate = predicate.And(t => t.IsVerified && t.IsAvailableStatus);
 
-                TutorSortOption.RatingHighToLow =>
-                    query.OrderByDescending(t =>
-                        t.Reviews.Any() ? t.Reviews.Average(r => r.Rating) : 0),
+                if (!string.IsNullOrWhiteSpace(filter.Subject))
+                    predicate = predicate.And(t => t.Subjects.Contains(filter.Subject));
 
-                TutorSortOption.ExperienceHighToLow =>
-                    query.OrderByDescending(t => t.YearsOfExperience),
+                if (filter.Gender.HasValue)
+                    predicate = predicate.And(t => t.Gender == filter.Gender);
 
-                _ =>
-                    query.OrderByDescending(t => t.DateCreated)
-            };
+                if (filter.MinRate.HasValue)
+                    predicate = predicate.And(t => t.HourlyRate >= filter.MinRate);
 
-            var totalCount = await query.CountAsync();
+                if (filter.MaxRate.HasValue)
+                    predicate = predicate.And(t => t.HourlyRate <= filter.MaxRate);
 
-            var tutors = await query
-                .Skip((paging.PageNumber - 1) * paging.PageSize)
-                .Take(paging.PageSize)
-                .ToListAsync();
+                if (filter.MinRating.HasValue)
+                    predicate = predicate.And(t =>
+                        t.Reviews.Any() &&
+                        t.Reviews.Average(r => r.Rating) >= filter.MinRating);
 
-            var result = tutors.Select(t =>
+                var query = _tutorRepo.Query(predicate);
+
+                query = filter.SortBy switch
+                {
+                    TutorSortOption.PriceLowToHigh =>
+                        query.OrderBy(t => t.HourlyRate),
+
+                    TutorSortOption.PriceHighToLow =>
+                        query.OrderByDescending(t => t.HourlyRate),
+
+                    TutorSortOption.RatingHighToLow =>
+                        query.OrderByDescending(t =>
+                            t.Reviews.Any() ? t.Reviews.Average(r => r.Rating) : 0),
+
+                    TutorSortOption.ExperienceHighToLow =>
+                        query.OrderByDescending(t => t.YearsOfExperience),
+
+                    _ =>
+                        query.OrderByDescending(t => t.DateCreated)
+                };
+
+                var totalCount = await query.CountAsync();
+
+                var tutors = await query
+                    .Skip((paging.PageNumber - 1) * paging.PageSize)
+                    .Take(paging.PageSize)
+                    .ToListAsync();
+
+                var result = tutors.Select(t =>
+                {
+                    var avgRating = t.Reviews.Any()
+                        ? t.Reviews.Average(r => r.Rating)
+                        : 0;
+
+                    return new TutorSearchResponseDto(
+                        t.Id,
+                        $"{t.Profile.FirstName} {t.Profile.LastName}",
+                        t.Gender,
+                        t.HourlyRate,
+                        t.IsAvailableStatus,
+                        t.IsVerified,
+                        Math.Round(avgRating, 1),
+                        t.Reviews.Count,
+                        t.Subjects.ToList()
+                    );
+                }).ToList();
+
+                return new BaseResponse<ICollection<TutorSearchResponseDto>>
+                {
+                    Status = true,
+                    Data = result,
+                    TotalCount = totalCount,
+                    PageNumber = paging.PageNumber,
+                    PageSize = paging.PageSize
+                };
+            }
+            catch (Exception ex)
             {
-                var avgRating = t.Reviews.Any()
-                    ? t.Reviews.Average(r => r.Rating)
-                    : 0;
-
-                return new TutorSearchResponseDto(
-                    t.Id,
-                    $"{t.Profile.FirstName} {t.Profile.LastName}",
-                    t.Gender,
-                    t.HourlyRate,
-                    t.IsAvailableStatus,
-                    t.IsVerified,
-                    Math.Round(avgRating, 1),
-                    t.Reviews.Count,
-                    t.Subjects.ToList()
-                );
-            }).ToList();
-
-            return new BaseResponse<ICollection<TutorSearchResponseDto>>
-            {
-                Status = true,
-                Data = result,
-                TotalCount = totalCount,
-                PageNumber = paging.PageNumber,
-                PageSize = paging.PageSize
-            };
+                return new BaseResponse<ICollection<TutorSearchResponseDto>>
+                {
+                    Status = false,
+                    Message = $"An unexpected error occurred: {ex.Message}"
+                };
+            }
         }
 
 
@@ -175,7 +249,11 @@ namespace HolookorBackend.Core.Application.Services
                 t.Location,
                 t.Qualifications.ToList(),
                 t.Subjects.ToList(),
-                t.Availability.ToList(),
+                t.Availabilities.Select(a => new AvailabilityDto(
+                     a.DayOfWeek,
+                     a.StartTime,
+                     a.EndTime
+                    )).ToList(),
                 t.YearsOfExperience,
                 t.CredentialsDocument,
                 t.GovernmentID,
@@ -196,7 +274,6 @@ namespace HolookorBackend.Core.Application.Services
                 PageNumber = paging?.PageNumber ?? 1,
                 PageSize = paging?.PageSize ?? total
             };
-
-        
     }
+
 }

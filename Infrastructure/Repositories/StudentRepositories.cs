@@ -18,35 +18,61 @@ namespace HolookorBackend.Infrastructure.Repositories
 
         public async Task<Student?> Get(string id)
         {
-            return await _context.Students
-                .Include(x => x.Profile)
-                 .SingleOrDefaultAsync(x => x.Id == id);
+            try
+            {
+                return await _context.Students
+                    .Include(x => x.Profile)
+                    .SingleOrDefaultAsync(x => x.Id == id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error occurred while retrieving Student by id: {id}.", ex);
+            }
         }
 
         public async Task<ICollection<Student>> GetAll(Paging paging)
         {
-            return await _context.Students
-                .Include(x => x.Profile)
-                .Where(x => !x.IsDeleted)
-                .Skip((paging.PageNumber - 1) * paging.PageSize)
-                .Take(paging.PageSize)
-                .ToListAsync();
+            try
+            {
+                return await _context.Students
+                    .Include(x => x.Profile)
+                    .Where(x => !x.IsDeleted)
+                    .Skip((paging.PageNumber - 1) * paging.PageSize)
+                    .Take(paging.PageSize)
+                    .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error occurred while retrieving Students with paging.", ex);
+            }
         }
 
-        public async Task<ICollection<Student>> GetAllAsync(
-    Expression<Func<Student, bool>> predicate
-)
+        public async Task<ICollection<Student>> GetAllAsync(Expression<Func<Student, bool>> predicate)
         {
-            return await _context.Students
-                .Where(predicate)
-                .ToListAsync();
+            try
+            {
+                return await _context.Students
+                    .Where(predicate)
+                    .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error occurred while retrieving Students by predicate.", ex);
+            }
         }
 
         public async Task<Student?> GetAsync(Expression<Func<Student, bool>> predicate)
         {
-            return await _context.Students
-                .Include(x => x.Profile)
-                .SingleOrDefaultAsync(predicate);
+            try
+            {
+                return await _context.Students
+                    .Include(x => x.Profile)
+                    .SingleOrDefaultAsync(predicate);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error occurred while retrieving Student by predicate.", ex);
+            }
         }
     }
 }

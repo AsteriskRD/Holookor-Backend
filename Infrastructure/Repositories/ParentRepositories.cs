@@ -18,25 +18,46 @@ namespace HolookorBackend.Infrastructure.Repositories
 
         public async Task<Parent?> Get(string id)
         {
-            return await _context.Parents
-                .Include(x => x.Profile)
-                .SingleOrDefaultAsync(x => x.Id == id);
+            try
+            {
+                return await _context.Parents
+                    .Include(x => x.Profile)
+                    .SingleOrDefaultAsync(x => x.Id == id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error occurred while retrieving Parent by id: {id}.", ex);
+            }
         }
 
         public async Task<ICollection<Parent>> GetAll(Paging paging)
         {
-            return await _context.Parents
-                .Include(x => x.Profile)
-                .Skip((paging.PageNumber - 1) * paging.PageSize)
-                .Take(paging.PageSize)
-                .ToListAsync();
+            try
+            {
+                return await _context.Parents
+                    .Include(x => x.Profile)
+                    .Skip((paging.PageNumber - 1) * paging.PageSize)
+                    .Take(paging.PageSize)
+                    .ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error occurred while retrieving Parents with paging.", ex);
+            }
         }
 
         public async Task<Parent?> GetAsync(Expression<Func<Parent, bool>> predicate)
         {
-            return await _context.Parents
-                .Include(x => x.Profile)
-                .SingleOrDefaultAsync(predicate);
+            try
+            {
+                return await _context.Parents
+                    .Include(x => x.Profile)
+                    .SingleOrDefaultAsync(predicate);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error occurred while retrieving Parent by predicate.", ex);
+            }
         }
     }
 }

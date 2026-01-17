@@ -48,22 +48,30 @@ namespace HolookorBackend.Core.Application.Services
             }
             catch (Exception ex)
             {
+                
                 throw new DomainException($"Failed to send verification email: {ex.Message}");
             }
         }
 
         public async Task<bool> ConfirmCode(string userProfileId, string code)
         {
-            var verification = await _repo.GetValidCode(userProfileId, code);
-            if (verification == null) return false;
+            try
+            {
+                var verification = await _repo.GetValidCode(userProfileId, code);
+                if (verification == null) return false;
 
-            verification.MarkUsed();
+                verification.MarkUsed();
 
-            var profile = await _profileRepo.Get(userProfileId);
-            profile!.IsEmailVerified = true;
+                var profile = await _profileRepo.Get(userProfileId);
+                profile!.IsEmailVerified = true;
 
-            await _repo.SaveAsync();
-            return true;
+                await _repo.SaveAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new DomainException($"Failed to confirm verification code: {ex.Message}");
+            }
         }
     }
 
