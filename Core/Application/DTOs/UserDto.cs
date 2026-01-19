@@ -8,6 +8,7 @@
 
         public string FirstName { get; set; } = default!;
         public string UserProfileId { get; set; } = default!;
+        public string ? VerificationCode { get; set; }
 
         public UserDto(string id)
         {

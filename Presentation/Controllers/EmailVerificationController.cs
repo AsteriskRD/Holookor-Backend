@@ -18,26 +18,26 @@ namespace HolookorBackend.Presentation.Controllers
             _service = service;
         }
 
-        [HttpPost("send")]
-        public async Task<IActionResult> Send([FromQuery] string userProfileId,[FromQuery] string email, [FromQuery]string firstName)
-        {
-            //var profileId = User.FindFirstValue("userProfileId");
-            //var email = User.FindFirstValue(ClaimTypes.Email);
-            if (string.IsNullOrWhiteSpace(email))
-                return BadRequest(new { message = "Email missing" });
+        //[HttpPost("send")]
+        //public async Task<IActionResult> Send([FromQuery] string userProfileId,[FromQuery] string email, [FromQuery]string firstName)
+        //{
+        //    //var profileId = User.FindFirstValue("userProfileId");
+        //    //var email = User.FindFirstValue(ClaimTypes.Email);
+        //    if (string.IsNullOrWhiteSpace(email))
+        //        return BadRequest(new { message = "Email missing" });
 
-            //var firstName = User.FindFirstValue(ClaimTypes.GivenName) ?? "User";
+        //    //var firstName = User.FindFirstValue(ClaimTypes.GivenName) ?? "User";
 
-            if (string.IsNullOrEmpty(userProfileId))
-                return Unauthorized(new { message = "Profile ID missing" });
+        //    if (string.IsNullOrEmpty(userProfileId))
+        //        return Unauthorized(new { message = "Profile ID missing" });
 
-            await _service.SendCodeAsync(userProfileId, email!, firstName);
+        //    await _service.SendCodeAsync(userProfileId, email!, firstName);
 
-            return Ok(new
-            {
-                message = $"Verification code sent to {email}"
-            });
-        }
+        //    return Ok(new
+        //    {
+        //        message = $"Verification code sent to {email}"
+        //    });
+        //}
 
         [HttpPost("confirm")]
         public async Task<IActionResult> Confirm(string code, [FromQuery] string userProfileId)

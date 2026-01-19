@@ -6,6 +6,7 @@ using HolookorBackend.Core.Application.Interfaces.Services;
 using HolookorBackend.Core.Application.Mappers;
 using HolookorBackend.Core.Application.Responses;
 using HolookorBackend.Core.Domain.Entities;
+using HolookorBackend.Infrastructure.Email;
 using HolookorBackend.Infrastructure.Persistence;
 
 namespace HolookorBackend.Core.Application.Services
@@ -18,6 +19,7 @@ namespace HolookorBackend.Core.Application.Services
         private readonly ITutorRepo _tutorRepo;
         private readonly IParentRepo _parentRepo;
         private readonly IJWTAuthenticationManager _jwtAuthManager;
+        private readonly IEmailVerificationRepo _emailVerificationRepo;
 
         public UserService(
             IUserRepo userRepo,
@@ -25,7 +27,8 @@ namespace HolookorBackend.Core.Application.Services
             IStudentRepo studentRepo,
             ITutorRepo tutorRepo,
             IParentRepo parentRepo,
-            IJWTAuthenticationManager jwtAuthManager)
+            IJWTAuthenticationManager jwtAuthManager,
+            IEmailVerificationRepo emailVerificationRepo)
         {
             _userRepo = userRepo;
             _userProfileRepo = userProfileRepo;
@@ -33,6 +36,7 @@ namespace HolookorBackend.Core.Application.Services
             _tutorRepo = tutorRepo;
             _parentRepo = parentRepo;
             _jwtAuthManager = jwtAuthManager;
+            _emailVerificationRepo = emailVerificationRepo;
         }
 
         public async Task<BaseResponse<UserDto>> Register(RegisterRequestModel model)
@@ -69,6 +73,12 @@ namespace HolookorBackend.Core.Application.Services
                 await _userRepo.CreateAsync(user);
                 await _userRepo.SaveAsync();
 
+                var code = Random.Shared.Next(100000, 999999).ToString();
+
+                var verification = new EmailVerification(userProfile.Id, code);
+                await _emailVerificationRepo.CreateAsync(verification);
+                await _emailVerificationRepo.SaveAsync();
+
                 return new BaseResponse<UserDto>
                 {
                     Status = true,
@@ -77,7 +87,8 @@ namespace HolookorBackend.Core.Application.Services
                     {
                         Email = user.Email,
                         FirstName = userProfile.FirstName,
-                        UserProfileId = userProfile.Id
+                        UserProfileId = userProfile.Id,
+                        VerificationCode = code
                     }
                 };
             }
@@ -90,7 +101,6 @@ namespace HolookorBackend.Core.Application.Services
                 };
             }
         }
-
         public async Task<BaseResponse<LoginResponseModel>> Login(LoginRequestModel model)
         {
             try
